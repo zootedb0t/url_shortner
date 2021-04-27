@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>URL Shortner</title>
+    <title>Welcome to URL-Shortener</title>
+    <link rel="shortcut icon" type="image/jpg" href="resource/your-logo.png" />
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
@@ -13,21 +14,39 @@
   </head>
   <body class="bg-indigo-100">
     <div
-      class="p-6 mx-auto rounded-b-lg shadow-md text-center item-center space-x-4 decoration-clone bg-gradient-to-b from-yellow-400 to-red-500"
+      class="p-6 mx-auto rounded-b-lg shadow-md text-center item-center decoration-clone bg-gradient-to-b from-yellow-400 to-red-500"
     >
       <span class="font-semibold text-3xl tracking-wide text-red-100"
-        >URL SHORTNER</span
+        >URL SHORTENER</span
       >
     </div>
-    <form>
-      <input
-        class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent ..."
-      />
-      <button
-        class="bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ..."
-      >
-        Sign up
-      </button>
-    </form>
+    <div class="item-center mx-auto text-center p-8 m-16">
+      <form>
+        <input
+          type="text"
+          placeholder="Enter the URL"
+          style="width: 800px"
+          class="border shadow-2xl focus:outline-none focus:ring-2 focus:ring-cyan focus:border-transparent m-2 p-2"
+        />
+        <button
+          class="bg-purple-600 hover:bg-purple-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 m-2 p-2"
+        >
+          Shorten URL
+        </button>
+      </form>
+    </div>
+    <div class="footer">
+      <div class="footer-content-right">
+        <a href="https://github.com/digitalocean"
+          ><img src="images/github.jpeg" class="icon-style" alt="Github icon"
+        /></a>
+        <a href="https://www.twitter.com/DigitalOcean"
+          ><img src="images/twitter.jpeg" class="icon-style" alt="Twitter icon"
+        /></a>
+        <a href="https://www.twitter.com"
+          ><img src="images/email.jpeg" class="icon-style" alt="Emailicon"
+        /></a>
+      </div>
+    </div>
   </body>
 </html>
