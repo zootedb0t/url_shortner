@@ -1,0 +1,23 @@
+{
+  "name": "url_shortner",
+  "version": "1.0.0",
+  "description": "The url-shortner is using Bitly api for url-shortening.",
+  "main": "myscript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zootedb0t/url_shortner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zootedb0t/url_shortner/issues"
+  },
+  "homepage": "https://github.com/zootedb0t/url_shortner#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
