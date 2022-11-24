@@ -2,124 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Welcome to URL-Shortener</title>
-
-    <link rel="shortcut icon" type="image/jpg" href="resource/your-logo.png" />
-
     <link rel="stylesheet" href="styles.css" />
-
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <script
+      src="https://kit.fontawesome.com/e73d46fe4e.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="myscript.js"></script>
   </head>
-  <body class="bg-indigo-100">
-    <div
-      class="
-        p-6
-        mx-auto
-        rounded-b-lg
-        shadow-md
-        text-center
-        item-center
-        decoration-clone
-        bg-gradient-to-b
-        from-yellow-400
-        to-red-500
-      "
-    >
-      <span class="font-semibold text-3xl tracking-wide text-red-100"
-        >URL SHORTENER</span
-      >
-    </div>
-    <div class="item-center mx-auto text-center p-8 m-16">
-      <form onsubmit="return results();">
-        <input
-          id="inputurl"
-          type="text"
-          placeholder="Enter the URL"
-          style="width: 800px"
-          class="
-            border
-            shadow-2xl
-            focus:outline-none
-            focus:ring-2
-            focus:ring-cyan
-            focus:border-transparent
-            m-2
-            p-2
-          "
-        />
-        <button
-          class="
-            bg-purple-600
-            hover:bg-purple-700
-            shadow-lg
-            focus:outline-none
-            focus:ring-2
-            focus:ring-purple-600
-            focus:ring-opacity-50
-            m-2
-            p-2
-          "
-        >
-          Shorten URL
-        </button>
-      </form>
-    </div>
-    <div>
-      <p id="shorturl"></p>
-    </div>
-    <!-- class="w-full inline-grid grid-cols-3 absolute inset-x-0 bottom-0 bg-indigo-300 border-t" -->
-    <footer class="w-full absolute inset-x-0 bottom-0 bg-indigo-300 border-t">
-      <!-- <span class="w-full inline-grid grid-cols-2 "> -->
+  <body>
+    <header>
+      <h1>URL Shortner</h1>
+    </header>
+    <form>
+      <input type="text" placeholder="Enter URL" required />
+          <button type="submit">Submit URL</button>
+    </form>
+    <footer>
       <span>
-        <span class="font-bold m-12 text-center inline-flex space-x-4"
-          >Created in
-          <a
-            href="https://www.linuxfoundation.org/"
-            target="_blank"
-            alt="linux icon"
-            ><img
-              class="object-contain h-7 w-7 p-1"
-              src="resource/linux.png"
-              alt="Linux"
-          /></a>
-          and
-          <a href="https://neovim.io/" target="_blank"
-            ><img
-              class="object-contain h-7 w-7 p-1"
-              src="resource/vim.png"
-              alt="Vim"
-          /></a>
-          with
-          <a href="" target="_blank"
-            ><img
-              class="object-contain h-7 w-7 p-1"
-              src="resource/heart.jpg"
-              alt="Heart"
-          /></a>
-        </span>
-        <span class="float-right">
-          <a href="https://github.com/zootedb0t/url_shortner" target="_blank"
-            ><img
-              class="object-contain h-10 w-10 m-4"
-              src="resource/github.png"
-              alt="Github icon"
-          /></a>
-        </span>
-        <span class="float-right">
-          <a href="https://www.twitter.com/" target="_blank"
-            ><img
-              class="object-contain h-10 w-10 m-4"
-              src="resource/twitter.png"
-              alt="Twitter icon"
-          /></a>
-        </span>
+      <span class="info">
+        <p>
+          Created in <i class="fa-brands fa-linux"></i> with
+          <i class="fa-solid fa-heart"></i>
+        </p>
+      </span>
+      <span class="code"
+        >Checkout source code
+        <a href="https://github.com/zootedb0t/url_shortner" target="_blank"
+          >URL Shortner</a
+        >
+      </span>
       </span>
     </footer>
   </body>
