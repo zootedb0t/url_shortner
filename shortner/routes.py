@@ -10,17 +10,15 @@ def home():
 
 @app.route('/shortner', methods=['POST'])
 def shortner():
-    url = request.form['data']
-    url_secure = "https://" + url
+    url = "https://" + request.form['data']
     headers = {
-        'Authorization': '9a02ca6a0051dc7d0af541e95e6f6c1f26704c2a',
+        'Authorization': 'enter your token',
         'Content-Type': 'application/json',
     }
-    data = '{ "long_url": "https://www.google.com", "group_guid": "Bl7ibQEpEmV" }'
+    raw_data = { "long_url": url, "group_guid": "enter your group id"  }
+    data = json.dumps(raw_data, indent=2)
     response = requests.post('https://api-ssl.bitly.com/v4/shorten', headers=headers, data=data)
-    return response.json()
-    # value = response.json()
-    # json_format = json.dump(value, indent=2)
-    # return json.load(json_format)
-    # json_output = json.load(json_format)
-    # return json.dumps(response.json(), indent=2)
+    value = response.json()
+    format = json.dumps(value, indent=2)
+    output = json.loads(format)
+    return output['link']
