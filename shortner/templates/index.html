@@ -15,8 +15,8 @@
     <header>
       <h1>URL Shortner</h1>
     </header>
-    <form class="data">
-      <input type="text" size="50%" placeholder="Enter URL" required />
+    <form  action="{{ url_for('shortner') }}" method="post">
+      <input type="text" name="data" size="50%" placeholder="Enter URL" required />
           <button type="submit">Submit URL</button>
     </form>
     <footer>
