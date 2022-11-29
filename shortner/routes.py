@@ -21,10 +21,10 @@ def shortner():
     else:
         url = "https://" + form_url
     headers = {
-        "Authorization": "your auth key",
+        "Authorization": "9a02ca6a0051dc7d0af541e95e6f6c1f26704c2a",
         "Content-Type": "application/json",
     }
-    raw_data = {"long_url": url, "group_guid": "your group id"}
+    raw_data = {"long_url": url, "group_guid": "Bl7ibQEpEmV"}
     data = json.dumps(raw_data, indent=2)
     response = requests.post(
         "https://api-ssl.bitly.com/v4/shorten", headers=headers, data=data
@@ -40,7 +40,7 @@ def shortner():
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect('database file')
+    conn = sqlite3.connect('/home/stoney/Documents/Projects/url_shortner/instance/url.db')
     cur = conn.cursor()
     url = cur.execute('SELECT * FROM url').fetchall()
     conn.close()

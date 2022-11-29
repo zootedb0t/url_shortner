@@ -8,9 +8,22 @@ h1 {
   text-align: center;
   font-size: 36px;
   padding: 15px;
-/* Remove gap between header and top*/
-  margin-top: 0; 
+  /* Remove gap between header and top*/
+  margin-top: 0;
   background-color: #33e9ff;
+}
+
+#dataview {
+  padding: 30px;
+}
+
+table, th, td {
+  border:1px solid black;
+}
+
+#url_input {
+  height: 50px;
+  width: 100%;
 }
 
 footer {

@@ -15,15 +15,11 @@
     <header>
       <h1>URL Shortner</h1>
     </header>
-    <form action="{{ url_for('shortner') }}" method="post">
-      <input
-        type="text"
-        name="data"
-        size="50%"
-        id="url_input"
-        placeholder="Enter URL"
-        required
-      />
+    <p class="database">
+      <a href="database">Check URL Database</a>
+    </p>
+    <form action="{{ url_for('shortner') }}" method="post" , id="url_input">
+      <input type="text" name="data" placeholder="Enter URL" required />
           <button type="submit">Submit URL</button>
     </form>
     <footer>

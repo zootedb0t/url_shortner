@@ -2,25 +2,24 @@
 <html lang="en">
   <head>
     <title>URL history</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="../static/styles.css" rel="stylesheet"> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../static/styles.css" />
   </head>
-  <body>
-  <table>
-    <thead>
-    <th>Id</th>
-    <th>Actual URL</th>
-    <th>Short URL</th>
-    <th>#</th>
-    </thead>
-    {% for data in url %}
-  <tbody>
-    <td>{{data[0]}}</td>
-    <td>{{data[1]}}</td>
-    <td>{{data[2]}}</td>
-  </tbody>
-    {% endfor%}
-  </table>
+  <body id="dataview">
+    <table align="center" style="width: 50%">
+      <thead>
+        <th>Id</th>
+        <th>Actual URL</th>
+        <th>Short URL</th>
+      </thead>
+      {% for data in url %}
+      <tbody>
+        <td>{{data[0]}}</td>
+        <td>{{data[1]}}</td>
+        <td>{{data[2]}}</td>
+      </tbody>
+      {% endfor%}
+    </table>
   </body>
 </html>
