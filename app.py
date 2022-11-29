@@ -1,1 +1,1 @@
-from shortner import app
+from shortner import app, db

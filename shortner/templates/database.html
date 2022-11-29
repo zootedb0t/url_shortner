@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>URL history</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="../static/styles.css" rel="stylesheet"> -->
+  </head>
+  <body>
+  <table>
+    <thead>
+    <th>Id</th>
+    <th>Actual URL</th>
+    <th>Short URL</th>
+    <th>#</th>
+    </thead>
+    {% for data in url %}
+  <tbody>
+    <td>{{data[0]}}</td>
+    <td>{{data[1]}}</td>
+    <td>{{data[2]}}</td>
+  </tbody>
+    {% endfor%}
+  </table>
+  </body>
+</html>
