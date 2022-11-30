@@ -21,7 +21,7 @@ def shortner():
     else:
         url = "https://" + form_url
     headers = {
-        "Authorization": "your auth key",
+        "Authorization": "your auth token",
         "Content-Type": "application/json",
     }
     raw_data = {"long_url": url, "group_guid": "your group id"}
@@ -32,16 +32,21 @@ def shortner():
     format = json.dumps(response, indent=2)
     short_link = json.loads(format)["link"]
 
+    # Check for duplicates
     if form_url != '' and short_link != '':
         p = Url(actual_url=form_url, short_url=short_link)
         db.session.add(p)
         db.session.commit()
-    return short_link
+    return render_template("slink.html", link = short_link )
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect('database file')
+    conn = sqlite3.connect('your database')
     cur = conn.cursor()
     url = cur.execute('SELECT * FROM url').fetchall()
     conn.close()
     return render_template("database.html", url=url)
+
+@app.errorhandler(500)
+def basic_error(e):
+    return "This already exist in our database !!!"

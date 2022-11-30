@@ -1,5 +1,5 @@
 function copy() {
-  var copy_url = document.getElementById("url_input")
+  var copy_url = document.getElementById("short_link")
   copy_url.select();
 // Copy the text inside the text field
   navigator.clipboard.writeText(copy_url.value);
