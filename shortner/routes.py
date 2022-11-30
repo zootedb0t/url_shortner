@@ -1,7 +1,7 @@
 from shortner import app, db, Url
 import sqlite3
 
-from flask import render_template, request
+from flask import render_template, request, redirect
 import requests
 import json
 
@@ -41,12 +41,19 @@ def shortner():
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect('your database')
+    conn = sqlite3.connect('/home/stoney/Documents/Projects/url_shortner/instance/url.db')
     cur = conn.cursor()
     url = cur.execute('SELECT * FROM url').fetchall()
     conn.close()
     return render_template("database.html", url=url)
 
-@app.errorhandler(500)
-def basic_error(e):
-    return "This already exist in our database !!!"
+@app.route('/delete/<int:id>')
+def erase(id):
+    data = Url.query.get(id)
+    db.session.delete(data)
+    db.session.commit()
+    return redirect('/')
+
+# @app.errorhandler(500)
+# def basic_error(e):
+#     return "This already exist in our database !!!"
