@@ -21,7 +21,7 @@ def shortner():
     else:
         url = "https://" + form_url
     headers = {
-        "Authorization": "your auth token",
+        "Authorization": "your auth key",
         "Content-Type": "application/json",
     }
     raw_data = {"long_url": url, "group_guid": "your group id"}
@@ -41,7 +41,7 @@ def shortner():
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect('/home/stoney/Documents/Projects/url_shortner/instance/url.db')
+    conn = sqlite3.connect('your database')
     cur = conn.cursor()
     url = cur.execute('SELECT * FROM url').fetchall()
     conn.close()
@@ -54,6 +54,6 @@ def erase(id):
     db.session.commit()
     return redirect('/')
 
-# @app.errorhandler(500)
-# def basic_error(e):
-#     return "This already exist in our database !!!"
+@app.errorhandler(500)
+def basic_error(e):
+    return "This already exist in our database !!!"

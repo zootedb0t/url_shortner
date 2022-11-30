@@ -2,15 +2,14 @@
 <html lang="en">
   <head>
     <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../static/styles.css" rel="stylesheet"/>
-  <script src="../static/myscript.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../static/styles.css" rel="stylesheet" />
+    <script src="../static/myscript.js"></script>
   </head>
   <body>
- <h1>Your new url</h1> 
- <p id="short_link">
- {{ link }}
- </p>
+    <h1>Your new url</h1>
+    <input type="text" value="{{ link }}" id="url" />
+    <button onclick="copyToClipboard()">Copy text</button>
   </body>
 </html>
