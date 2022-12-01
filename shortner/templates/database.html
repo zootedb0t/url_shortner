@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../static/styles.css" />
+    <script src="../static/myscript.js"></script>
   </head>
   <body id="dataview">
     <table align="center" style="width: 50%">
@@ -12,6 +13,7 @@
         <th>Id</th>
         <th>Actual URL</th>
         <th>Short URL</th>
+        <th>Actions</th>
       </thead>
       {% for data in url %}
       <tbody>
@@ -19,6 +21,7 @@
         <td>{{data[1]}}</td>
         <td>{{data[2]}}</td>
         <td><a href="/delete/{{data[0]}}" type="button">Delete</a></td>
+        <td><a href="/qrcode/{{data[0]}}" type="button">Get qr code</a></td>
       </tbody>
       {% endfor%}
     </table>
