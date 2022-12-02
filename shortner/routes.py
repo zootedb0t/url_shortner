@@ -24,13 +24,12 @@ def shortner():
     else:
         url = "https://" + form_url
     headers = {
-        "Authorization": "yout auth key",
+        "Authorization": "your auth key",
         "Content-Type": "application/json",
     }
     raw_data = {"long_url": url, "group_guid": "your group id"}
-    data = json.dumps(raw_data, indent=2)
     response = requests.post(
-        "https://api-ssl.bitly.com/v4/shorten", headers=headers, data=data
+        "https://api-ssl.bitly.com/v4/shorten", headers=headers, data=json.dumps(raw_data)
     ).json()
     format = json.dumps(response, indent=2)
     short_link = json.loads(format)["link"]

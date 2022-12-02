@@ -6,10 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="../static/styles.css" rel="stylesheet" />
     <script src="../static/myscript.js"></script>
+    <script
+      src="https://kit.fontawesome.com/e73d46fe4e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1>Your new url</h1>
-    <input type="text" value="{{ link }}" id="url" />
-    <button onclick="copyToClipboard()">Copy url</button>
+    <p id="url">
+    {{ link }}
+    </p>
+    <button onclick="urlCopy('#url')">Copy url</button>
+    <footer>
+      <span>
+        <span class="info">
+          <p>
+            Created in <i class="fa-brands fa-linux"></i> with
+            <i class="fa-solid fa-heart"></i>
+          </p>
+        </span>
+        <span class="code"
+          >Checkout source code at
+          <a href="https://github.com/zootedb0t/url_shortner" target="_blank"
+            >URL Shortner</a
+          >
+        </span>
+      </span>
+    </footer>
   </body>
 </html>
