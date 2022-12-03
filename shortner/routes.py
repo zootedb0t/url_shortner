@@ -4,7 +4,7 @@ import sqlite3
 from flask import render_template, request, redirect
 import requests
 import json
-
+import api
 
 @app.before_first_request
 def create_tables():
@@ -25,10 +25,10 @@ def shortner():
         else:
             url = "https://" + form_url
         headers = {
-            "Authorization": "your auth key",
+            "Authorization": api.Authorization,
             "Content-Type": "application/json",
         }
-        raw_data = {"long_url": url, "group_guid": "your group id"}
+        raw_data = {"long_url": url, "group_guid": api.group_guid}
         response = requests.post(
             "https://api-ssl.bitly.com/v4/shorten",
             headers=headers,
@@ -59,7 +59,7 @@ def get_url():
 @app.route("/qrcode/<int:id>")
 def getqr(id):
     headers = {
-        "Authorization": "your auth key",
+        "Authorization": api.Authorization,
     }
     params = (("image_format", "svg"),)
     data = Url.query.filter_by(id=id).first()
