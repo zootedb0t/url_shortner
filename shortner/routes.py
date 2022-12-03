@@ -16,37 +16,40 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/shortner", methods=["POST"])
+@app.route("/shortner", methods=["POST", "GET"])
 def shortner():
-    form_url = request.form["data"]
-    if form_url.startswith("https://"):
-        url = form_url
-    else:
-        url = "https://" + form_url
-    headers = {
-        "Authorization": "your auth key",
-        "Content-Type": "application/json",
-    }
-    raw_data = {"long_url": url, "group_guid": "your group id"}
-    response = requests.post(
-        "https://api-ssl.bitly.com/v4/shorten", headers=headers, data=json.dumps(raw_data)
-    ).json()
-    format = json.dumps(response, indent=2)
-    short_link = json.loads(format)["link"]
+    if request.method == "POST":
+        form_url = request.form["data"]
+        if form_url.startswith("https://"):
+            url = form_url
+        else:
+            url = "https://" + form_url
+        headers = {
+            "Authorization": "your auth key",
+            "Content-Type": "application/json",
+        }
+        raw_data = {"long_url": url, "group_guid": "your group id"}
+        response = requests.post(
+            "https://api-ssl.bitly.com/v4/shorten",
+            headers=headers,
+            data=json.dumps(raw_data),
+        ).json()
+        format = json.dumps(response, indent=2)
+        short_link = json.loads(format)["link"]
 
-    # Check for duplicates
-    if form_url != "" and short_link != "":
-        p = Url(actual_url=form_url, short_url=short_link)
-        db.session.add(p)
-        db.session.commit()
-    return render_template("slink.html", link=short_link)
+        # Check for duplicates
+        if form_url != "" and short_link != "":
+            p = Url(actual_url=form_url, short_url=short_link)
+            db.session.add(p)
+            db.session.commit()
+        return render_template("slink.html", link=short_link)
+    else:
+        return "Please use POST method"
 
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect(
-        "your database"
-    )
+    conn = sqlite3.connect("your database")
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
     conn.close()
