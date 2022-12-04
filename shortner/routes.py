@@ -1,10 +1,12 @@
-from shortner import app, db, Url
+# from shortner import app, db
+from shortner import app
+from shortner.model import Url, db
 import sqlite3
-
 from flask import render_template, request, redirect
 import requests
 import json
 import api
+
 
 @app.before_first_request
 def create_tables():
@@ -49,7 +51,9 @@ def shortner():
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect("your database")
+    conn = sqlite3.connect(
+        "your database"
+    )
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
     conn.close()
