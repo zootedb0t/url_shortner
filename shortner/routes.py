@@ -46,7 +46,7 @@ def shortner():
             db.session.commit()
         return render_template("slink.html", link=short_link)
     else:
-        return "Please use POST method"
+        return "Please use POST method GET is not allowed"
 
 
 @app.route("/database")

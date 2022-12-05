@@ -12,7 +12,7 @@
 
 <body>
   <header>
-    <h1>URL Database</h1>
+    <h1> <a href="/">URL Database</a></h1>
   </header>
   <table align="center" style="width: 60%">
     <thead>
@@ -25,26 +25,27 @@
     <tbody>
       <td>{{data[0]}}</td>
       <td>{{data[1]}}</td>
-      <td>{{data[2]}}</td>
+      <td id="shorturl">{{data[2]}}</td>
       <td>
-        <a href="/delete/{{data[0]}}" type="button">Delete</a>
-        <a href="/qrcode/{{data[0]}}" type="button">Get QR Code</a>
+        <button type="submit">
+          <a href="/delete/{{data[0]}}" type="button">Delete</a>
+        </button>
+        <button type="submit">
+          <a href="/qrcode/{{data[0]}}" type="button">Get QR Code</a>
+        </button>
+        <button onclick="urlCopy('#shorturl')">Copy to clipboard</button>
       </td>
     </tbody>
     {% endfor%}
   </table>
-  <footer>
-    <span>
-      <span class="info">
-        <p>
+  <footer class="info">
+      <span>
           Made in <i class="fa-brands fa-linux"></i> with
           <i class="fa-solid fa-heart"></i>
-        </p>
       </span>
-      <span class="code">Checkout source code at
+      <span>Checkout source code at
         <a href="https://github.com/zootedb0t/url_shortner" target="_blank">URL Shortner</a>
       </span>
-    </span>
   </footer>
 </body>
 

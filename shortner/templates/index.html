@@ -14,25 +14,26 @@
   <header>
     <h1>URL Shortner</h1>
   </header>
-  <p class="database">
-    <a href="database">Check URL Database</a>
+  <p>
+    <button class="database">
+      <a href="database">Check URL Database</a>
+    </button>
   </p>
   <form action="{{ url_for('shortner') }}" method="post" , id="url_input">
     <input type="url" name="data" placeholder="Enter URL" required />
         <button type="submit">Submit URL</button>
   </form>
-  <footer>
-    <span>
-      <span class="info">
-        <p>
+  <footer class="info">
+      <span>
           Created in <i class="fa-brands fa-linux"></i> with
           <i class="fa-solid fa-heart"></i>
-        </p>
       </span>
-      <span class="code">Checkout source code at
-        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">URL Shortner</a>
+      <br>
+      <span>Checkout source code at
+        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
+          <i class="fa-brands fa-square-github"></i>
+        </a>
       </span>
-    </span>
   </footer>
 </body>
 
