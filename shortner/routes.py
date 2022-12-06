@@ -1,4 +1,3 @@
-# from shortner import app, db
 from shortner import app
 from shortner.model import Url, db
 import sqlite3
@@ -52,7 +51,7 @@ def shortner():
 @app.route("/database")
 def get_url():
     conn = sqlite3.connect(
-        "your database"
+        "/home/stoney/Documents/Projects/url_shortner/instance/url.db"
     )
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
@@ -74,7 +73,7 @@ def getqr(id):
     response = requests.get(r, headers=headers, params=params).json()
     format = json.dumps(response, indent=2)
     api_output = json.loads(format)["description"]
-    return api_output
+    return render_template("error.html", error_message=api_output)
 
 
 @app.route("/delete/<int:id>")
@@ -87,4 +86,5 @@ def erase(id):
 
 @app.errorhandler(500)
 def basic_error(e):
-    return "This already exist in our database !!!"
+    error_msg = e
+    return render_template("500.html", error_message=error_msg)
