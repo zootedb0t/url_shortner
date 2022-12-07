@@ -4,9 +4,11 @@ import sqlite3
 from flask import render_template, request, redirect
 import requests
 import json
+
+# Importing private api keys
 import api
 
-
+# Ensure database is created
 @app.before_first_request
 def create_tables():
     db.create_all()
@@ -40,9 +42,12 @@ def shortner():
 
         # Check for duplicates
         if form_url != "" and short_link != "":
-            p = Url(actual_url=form_url, short_url=short_link)
-            db.session.add(p)
-            db.session.commit()
+            if Url.query.filter_by(actual_url=url).first():
+                return "This already exist in our database"
+            else:
+                p = Url(actual_url=form_url, short_url=short_link)
+                db.session.add(p)
+                db.session.commit()
         return render_template("slink.html", link=short_link)
     else:
         return "Please use POST method GET is not allowed"
@@ -50,9 +55,7 @@ def shortner():
 
 @app.route("/database")
 def get_url():
-    conn = sqlite3.connect(
-        "/home/stoney/Documents/Projects/url_shortner/instance/url.db"
-    )
+    conn = sqlite3.connect("your database")
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
     conn.close()
