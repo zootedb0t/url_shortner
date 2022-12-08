@@ -43,7 +43,8 @@ def shortner():
         # Check for duplicates
         if form_url != "" and short_link != "":
             if Url.query.filter_by(actual_url=url).first_or_404():
-                return "This already exist in our database"
+                # return "This already exist in our database"
+                return render_template("duplicate.html", duplicate=url )
             else:
                 p = Url(actual_url=form_url, short_url=short_link)
                 db.session.add(p)

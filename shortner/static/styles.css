@@ -59,6 +59,11 @@ footer {
   font-size: 20px;
 }
 
+#duplicate {
+  font-size: 28px;
+  color: red;
+}
+
 #error_msg {
   font-size: 28px;
   background-color: red;

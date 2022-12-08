@@ -2,22 +2,21 @@
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>Duplicate URL</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="../static/styles.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/e73d46fe4e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   {% block content %}
-  <h1>{% block title %} Resource Not Available {% endblock %}</h1>
-  <p id="error_msg">
-    {{ error_message }} For more details check your
-    <a href="https://bitly.com/">Bitly Account</a>
+  <h1>Check URL Database</h1>
+  <p id="duplicate">
+    {{duplicate}}
+    <br />
+    is already in our database.
   </p>
   {% endblock %}
-
   <footer class="info">
     <span>
       Created in <i class="fa-brands fa-linux"></i> with
