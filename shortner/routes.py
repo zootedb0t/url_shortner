@@ -42,7 +42,7 @@ def shortner():
 
         # Check for duplicates
         if form_url != "" and short_link != "":
-            if Url.query.filter_by(actual_url=url).first():
+            if Url.query.filter_by(actual_url=url).first_or_404():
                 return "This already exist in our database"
             else:
                 p = Url(actual_url=form_url, short_url=short_link)
@@ -70,7 +70,6 @@ def getqr(id):
     params = (("image_format", "svg"),)
     data = Url.query.filter_by(id=id).first()
     url_secure = data.short_url
-    db.session.commit()
     bit_url = url_secure.removeprefix("https://")
     r = f"https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/qr"
     response = requests.get(r, headers=headers, params=params).json()
