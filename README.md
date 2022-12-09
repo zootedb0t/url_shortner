@@ -1,4 +1,4 @@
-# URL Shortner
+# URL Shortner App
 
 A url-shortner built using flask and Bitly api. It has following dependencies:
 

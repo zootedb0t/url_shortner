@@ -6,6 +6,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 h1 {
@@ -14,7 +15,12 @@ h1 {
   padding: 15px;
   /* Remove gap between header and top*/
   margin-top: 0;
-  background-color: #33e9ff;
+  /* background-color: #33e9ff; */
+  background-color: #04aa6d;
+  color: #fff;
+
+  box-shadow: 0 9px #999;
+  border-radius: 0px 0px 15px 15px;
 }
 
 table,
@@ -23,24 +29,42 @@ td {
   border: 1px solid black;
 }
 
+table,
+a {
+  color: black;
+}
+
 #url_input {
   height: 60px;
   padding: 30px;
 }
-
 
 .data {
   padding: 150px;
   height: 60px;
 }
 
-
 .database {
-  text-decoration: underline;
-  height: 50px;
-  width: 150px;
-  font-size: 14px;
-  background-color: skyblue;
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04aa6d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.database:hover {
+  background-color: #3e8e41;
+}
+
+.database:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* Footer */
@@ -67,4 +91,9 @@ footer {
 #error_msg {
   font-size: 28px;
   background-color: red;
+}
+
+#data_tbl {
+  width: 60%;
+  /* color: black; */
 }
