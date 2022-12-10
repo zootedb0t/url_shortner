@@ -35,7 +35,6 @@ a {
 }
 
 #url_input {
-  height: 60px;
   padding: 30px;
 }
 
@@ -94,6 +93,6 @@ footer {
 }
 
 #data_tbl {
-  width: 60%;
+  width: 75%;
   /* color: black; */
 }

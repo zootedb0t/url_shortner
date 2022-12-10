@@ -54,7 +54,7 @@ def shortner():
 
 
 @app.route("/database")
-def get_url():
+def database():
     conn = sqlite3.connect("your database")
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
