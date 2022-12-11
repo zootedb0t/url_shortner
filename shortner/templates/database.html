@@ -33,7 +33,9 @@
         <button type="submit">
           <a href="/qrcode/{{data[0]}}" type="button">Get QR Code</a>
         </button>
-        <button onclick="urlCopy('#shorturl')">Copy to clipboard</button>
+        <button type="submit">
+          <a href="/copytoclipboard/{{data[0]}}" type="button">Copy to clipboard</a>
+        </button>
       </td>
     </tbody>
     {% endfor%}

@@ -4,6 +4,7 @@ import sqlite3
 from flask import render_template, request, redirect
 import requests
 import json
+import pyperclip
 
 # Importing private api keys
 import api
@@ -42,8 +43,8 @@ def shortner():
 
         # Check for duplicates
         if form_url != "" and short_link != "":
-            if Url.query.filter_by(actual_url=url).first_or_404():
-                return render_template("duplicate.html", duplicate=url )
+            if Url.query.filter_by(actual_url=url).first():
+                return render_template("duplicate.html", duplicate=url)
             else:
                 p = Url(actual_url=form_url, short_url=short_link)
                 db.session.add(p)
@@ -84,6 +85,14 @@ def erase(id):
     db.session.delete(data)
     db.session.commit()
     return redirect("/")
+
+
+@app.route("/copytoclipboard/<int:id>")
+def copytoclipboard(id):
+    data = Url.query.filter_by(id=id).first()
+    copy = data.short_url
+    pyperclip.copy(copy)
+    return redirect("/database")
 
 
 @app.errorhandler(500)
