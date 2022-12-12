@@ -8,4 +8,4 @@ A url-shortner built using flask and Bitly api. It has following dependencies:
 * pyperclip - For copy to clipboard functionality
 
 For using bitly api go to [Bitly](https://bitly.com/) 
-website and make a free account to get authentication key and group id. Use these credentials in the applications.
+website and make a free account to get authentication key and group id. Use these credentials in the applications. If you want to use icons from [font-awesome](https://fontawesome.com/) website get your own kit and use that.
