@@ -15,20 +15,21 @@
     <h1>URL Shortner</h1>
   </header>
   <p>
-    <a href="database"><button class="database">Check URL Database</button></a>
+    <a href="database"><button class="database"> <i class="fa-solid fa-sync fa-spin"></i></i> Check URL
+        Database</button></a>
   </p>
   <form action="{{ url_for('shortner') }}" method="post" id="url_input">
     <input type="url" name="data" style="width: 250px; height: 30px" placeholder="Enter URL" required />
-        <button type="submit" style="height: 30px">Submit URL</button>
+        <button type="submit" style="height: 30px"><i class="fa-sharp fa-solid fa-paper-plane"></i> Submit URL</button>
   </form>
   <footer class="info">
     <span>
-      Created in <i class="fa-brands fa-linux"></i> with
-      <i class="fa-solid fa-heart"></i>
+      Created in <i class="fa-brands fa-linux fa-lg fa-bounce"></i> with
+      <i class="fa-solid fa-heart fa-lg fa-beat"></i>
     </span>
     <span>Checkout source code at
       <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-        <i class="fa-brands fa-square-github"></i>
+        <i class="fa-brands fa-square-github fa-lg fa-shake"></i>
       </a>
     </span>
   </footer>
