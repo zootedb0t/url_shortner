@@ -1,7 +1,7 @@
 from shortner import app
 from shortner.model import Url, db
 import sqlite3
-from flask import flash, render_template, request, redirect, make_response
+from flask import flash, jsonify, render_template, request, redirect, make_response
 import requests
 import json
 import pyperclip
@@ -17,7 +17,9 @@ def create_tables():
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    response = make_response(render_template("index.html"), 200)
+    response.set_cookie('message', "Cookie time")
+    return response
 
 
 # Authkey and group-id is stored in api.py file

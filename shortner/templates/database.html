@@ -14,12 +14,16 @@
   <header>
     <h1><a href="/">URL Database</a></h1>
   </header>
-  {% for message in get_flashed_messages() %}
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
   <div style="font-size: 18px; color: red; padding: 10px;" id="div_flash">
     {{ message }}
     <input type="button" value="&#10006" onclick="removeFlash()" />
   </div>
   {% endfor %}
+  {% endif %}
+  {% endwith %}
   <table align="center" id="data_tbl">
     <thead>
       <th>Id</th>
