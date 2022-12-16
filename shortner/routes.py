@@ -1,7 +1,7 @@
 from shortner import app
 from shortner.model import Url, db
 import sqlite3
-from flask import flash, jsonify, render_template, request, redirect, make_response
+from flask import flash, render_template, request, redirect, make_response
 import requests
 import json
 import pyperclip
@@ -95,14 +95,6 @@ def copytoclipboard(id):
     pyperclip.copy(copy)
     flash("Copied to clipboard")
     return redirect("/database")
-
-
-# Playing with cookie
-# @app.route("/setcookie")
-# def setcookie():
-#     response = make_response('<h1>Say hello to cookie!</h1>')
-#     response.set_cookie('message', 'I\'m your cookie')
-#     return response
 
 @app.errorhandler(500)
 def basic_error(e):
