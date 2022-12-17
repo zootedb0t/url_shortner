@@ -18,7 +18,7 @@ def create_tables():
 @app.route("/")
 def home():
     response = make_response(render_template("index.html"), 200)
-    response.set_cookie('message', "Cookie time")
+    response.set_cookie("message", "Cookie time")
     return response
 
 
@@ -56,7 +56,7 @@ def shortner():
 @app.route("/database")
 def database():
     conn = sqlite3.connect(
-            "your database"
+        "your database"
     )
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
@@ -95,6 +95,7 @@ def copytoclipboard(id):
     pyperclip.copy(copy)
     flash("Copied to clipboard")
     return redirect("/database")
+
 
 @app.errorhandler(500)
 def basic_error(e):

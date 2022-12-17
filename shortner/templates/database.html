@@ -6,7 +6,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../static/styles.css" />
-  <script src="../static/myscript.js"></script>
+  <script>
+    /* Removing flash messages */
+    function removeFlash() {
+      const element = document.getElementById("div_flash");
+      element.remove();
+    }
+
+    setTimeout(function () {
+      removeFlash();
+    }, 4000);
+  </script>
   <script src="https://kit.fontawesome.com/e73d46fe4e.js" crossorigin="anonymous"></script>
 </head>
 
