@@ -32,11 +32,16 @@ def shortner():
             "Content-Type": "application/json",
         }
         raw_data = {"long_url": url, "group_guid": api.group_guid}
+        # response returns a object after request. To get relevant data you need to
+        # access the property you're after, e.g. r.status_code, r.text, etc.
+        # here api returns data in json
         response = requests.post(
             "https://api-ssl.bitly.com/v4/shorten",
             headers=headers,
+            # Conversion from python to json
             data=json.dumps(raw_data),
         ).json()
+        # Conversion from python to json
         format = json.dumps(response, indent=2)
         short_link = json.loads(format)["link"]
 
@@ -72,6 +77,7 @@ def getqr(id):
     params = (("image_format", "svg"),)
     data = Url.query.filter_by(id=id).first()
     url_secure = data.short_url
+    # url_secure contains https and api only accepts url with https
     bit_url = url_secure.removeprefix("https://")
     r = f"https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/qr"
     response = requests.get(r, headers=headers, params=params).json()
