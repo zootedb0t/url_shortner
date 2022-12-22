@@ -1,10 +1,10 @@
-from shortner import app
-from shortner.model import Url, db
 import sqlite3
 from flask import flash, render_template, request, redirect, make_response
 import requests
 import json
 import pyperclip
+from shortner import app
+from shortner.model import Url, db
 
 # Importing private api keys
 import api
