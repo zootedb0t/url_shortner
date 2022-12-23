@@ -9,3 +9,11 @@ A url-shortner built using flask and Bitly api. It has following dependencies:
 
 For using bitly api go to [Bitly](https://bitly.com/) 
 website and make a free account to get authentication key and group id. Use these credentials in the applications. If you want to use icons from [font-awesome](https://fontawesome.com/) website get your own kit and use that.
+
+## App in action
+
+![App home page](./media/home.png)
+
+![Database](./media/database.png)
+
+![Short_url](./media/short_url.png)
