@@ -10,11 +10,14 @@
 
 <body>
   {% block content %}
-  <h1>{% block title %} Resource Not Available {% endblock %}</h1>
-  <p id="error_msg">
-    {{ error_message }} For more details check your
-    <a style="text-decoration: underline" href="https://bitly.com/">Bitly Account</a>
+  <h1>{% block title %} QR Code {% endblock %}</h1>
+
+  <p>
+    <img src="{{ qrcode }}" alt="qrcode" />
   </p>
+  <a href="/">
+    <button type="submit">Goto Home</button>
+  </a>
   {% endblock %}
 
   <footer class="info">

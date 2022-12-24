@@ -1,6 +1,5 @@
 import sqlite3
 import pyqrcode
-import pyqrcode
 from flask import flash, render_template, request, redirect, make_response
 import requests
 import json
@@ -93,8 +92,10 @@ def getqr(id):
     qr_obj = pyqrcode.create(url_secure)
     # qr_code = qr_obj.png("file.png", scale=10, background="#FFFFFF")
     image_as_str = qr_obj.png_as_base64_str(scale=10)
-    return '<img src="data:image/png;base64,{}">'.format(image_as_str)
-    # return render_template("error.html", error_message=qr_code)
+
+    image = "data:image/png;base64,{}".format(image_as_str)
+    return render_template("qrcode.html", qrcode=image)
+
 
 @app.route("/delete/<int:id>")
 def erase(id):
