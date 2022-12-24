@@ -1,4 +1,6 @@
 import sqlite3
+import pyqrcode
+import pyqrcode
 from flask import flash, render_template, request, redirect, make_response
 import requests
 import json
@@ -71,20 +73,28 @@ def database():
 
 @app.route("/qrcode/<int:id>")
 def getqr(id):
-    headers = {
-        "Authorization": api.Authorization,
-    }
-    params = (("image_format", "svg"),)
+    # For bitly api
+    #     headers = {
+    #         "Authorization": api.Authorization,
+    #     }
+    #     params = (("image_format", "svg"),)
+    #     # url_secure contains https and api only accepts url with https
+    #     bit_url = url_secure.removeprefix("https://")
+    #     r = f"https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/qr"
+    #     response = requests.get(r, headers=headers, params=params).json()
+    #     format = json.dumps(response, indent=2)
+    #     api_output = json.loads(format)["description"]
+
+    # WIP
+    # TODO Center qr code generated
+    # Generating qr code using pyqrcode module
     data = Url.query.filter_by(id=id).first()
     url_secure = data.short_url
-    # url_secure contains https and api only accepts url with https
-    bit_url = url_secure.removeprefix("https://")
-    r = f"https://api-ssl.bitly.com/v4/bitlinks/{bit_url}/qr"
-    response = requests.get(r, headers=headers, params=params).json()
-    format = json.dumps(response, indent=2)
-    api_output = json.loads(format)["description"]
-    return render_template("error.html", error_message=api_output)
-
+    qr_obj = pyqrcode.create(url_secure)
+    # qr_code = qr_obj.png("file.png", scale=10, background="#FFFFFF")
+    image_as_str = qr_obj.png_as_base64_str(scale=10)
+    return '<img src="data:image/png;base64,{}">'.format(image_as_str)
+    # return render_template("error.html", error_message=qr_code)
 
 @app.route("/delete/<int:id>")
 def erase(id):
