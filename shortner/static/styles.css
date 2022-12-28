@@ -76,6 +76,19 @@ footer {
   background-color: #03b982;
 }
 
+/*WIP*/
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+span.tilt-shaking {
+  animation: tilt-shaking 0.83s infinite;
+}
+
 .info {
   padding: 10px;
   font-size: 2em;

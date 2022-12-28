@@ -1,6 +1,14 @@
 import sqlite3
+import os
 import pyqrcode
-from flask import flash, render_template, request, redirect, make_response
+from flask import (
+    flash,
+    render_template,
+    request,
+    redirect,
+    make_response,
+    send_from_directory,
+)
 import requests
 import json
 import pyperclip
@@ -16,6 +24,15 @@ def create_tables():
     db.create_all()
 
 
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, "static"),
+        "favicon.ico",
+        mimetype="image/vnd.microsoft.icon",
+    )
+
+
 @app.route("/")
 def home():
     response = make_response(render_template("index.html"), 200)
@@ -23,7 +40,7 @@ def home():
     return response
 
 
-# Authkey and group-id is stored in api.py file
+# Authkey and group-id are stored in api.py file
 @app.route("/shortner", methods=["POST", "GET"])
 def shortner():
     if request.method == "POST":
@@ -42,7 +59,7 @@ def shortner():
             # Conversion from python to json
             data=json.dumps(raw_data),
         ).json()
-        # Conversion from python to json
+        # Conversion from python dictionary to json
         format = json.dumps(response, indent=2)
         short_link = json.loads(format)["link"]
 
@@ -61,9 +78,7 @@ def shortner():
 
 @app.route("/database")
 def database():
-    conn = sqlite3.connect(
-        "your database"
-    )
+    conn = sqlite3.connect("your database")
     cur = conn.cursor()
     url = cur.execute("SELECT * FROM url").fetchall()
     conn.close()
@@ -85,7 +100,6 @@ def getqr(id):
     #     api_output = json.loads(format)["description"]
 
     # WIP
-    # TODO Center qr code generated
     # Generating qr code using pyqrcode module
     data = Url.query.filter_by(id=id).first()
     url_secure = data.short_url
@@ -98,7 +112,7 @@ def getqr(id):
 
 
 @app.route("/delete/<int:id>")
-def erase(id):
+def delete(id):
     data = Url.query.get(id)
     db.session.delete(data)
     db.session.commit()

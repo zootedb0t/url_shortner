@@ -47,10 +47,10 @@
       <td>{{data[2]}}</td>
       <td>
         <button type="submit">
-          <a href="/delete/{{data[0]}}" type="button">Delete</a>
+          <a href="{{url_for('delete', id=data[0])}}" type="button">Delete</a>
         </button>
         <button type="submit">
-          <a href="/qrcode/{{data[0]}}" type="button">Get QR Code</a>
+          <a href="{{url_for('getqr', id=data[0])}}" type="button">Get QR Code</a>
         </button>
         <button type="submit">
           <a href="/copytoclipboard/{{data[0]}}" type="button">Copy to clipboard</a>
