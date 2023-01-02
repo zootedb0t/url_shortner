@@ -24,6 +24,7 @@ def create_tables():
     db.create_all()
 
 
+# Favicon
 @app.route("/favicon.ico")
 def favicon():
     return send_from_directory(
@@ -99,7 +100,6 @@ def getqr(id):
     #     format = json.dumps(response, indent=2)
     #     api_output = json.loads(format)["description"]
 
-    # WIP
     # Generating qr code using pyqrcode module
     data = Url.query.filter_by(id=id).first()
     url_secure = data.short_url
