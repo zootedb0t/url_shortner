@@ -9,12 +9,14 @@ A url-shortner built using flask and Bitly api. It has following dependencies:
 * PyQRCode - For generating QR code of URL
 
 For using bitly api go to [Bitly](https://bitly.com/) 
-website and get a free account to get authentication key and group id. Use these credentials in the applications. If you want to use icons from [font-awesome](https://fontawesome.com/) website get your own kit and use that.
+website and get a free account to get authentication key and group id. Use these credentials in the applications. Create a file for storing these api keys
+and add that to gitignore for privacy.
 
 To find out group_guid for your account. Make a GET request to
 `https://api-ssl.bitly.com/v4/` you can use Postman, Curl, Node or Python request module.
 
 While making request pass your Authorization token to header. In curl you can do this
+
 ```
 curl \
 -H 'Authorization: Bearer {TOKEN}' \
@@ -26,10 +28,14 @@ For more [info](https://dev.bitly.com/api-reference/#getGroups)
 
 ## App in action
 
+### App home page
 ![App home page](./media/home.png)
 
+### User database containing urls
 ![Database](./media/database.png)
 
+### Short-URL generated through api
 ![Short_URL](./media/short_url.png)
 
+### Short-URL QR Code
 ![QR Code](./media/qrcode.png)
