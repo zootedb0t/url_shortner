@@ -42,18 +42,18 @@
     </thead>
     {% for data in url %}
     <tbody>
-      <td>{{data[0]}}</td>
-      <td>{{data[1]}}</td>
-      <td>{{data[2]}}</td>
+      <td>{{ data.id }}</td>
+      <td>{{ data.actual_url }}</td>
+      <td>{{ data.short_url }}</td>
       <td>
         <button type="submit">
-          <a href="{{url_for('delete', id=data[0])}}" type="button">Delete</a>
+          <a href="{{url_for('delete', id=data.id )}}" type="button">Delete</a>
         </button>
         <button type="submit">
-          <a href="{{url_for('getqr', id=data[0])}}" type="button">Get QR Code</a>
+          <a href="{{url_for('getqr', id=data.id )}}" type="button">Get QR Code</a>
         </button>
         <button type="submit">
-          <a href="/copytoclipboard/{{data[0]}}" type="button">Copy to clipboard</a>
+          <a href="/copytoclipboard/data.id" type="button">Copy to clipboard</a>
         </button>
       </td>
     </tbody>

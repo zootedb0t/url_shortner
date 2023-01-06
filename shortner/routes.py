@@ -1,4 +1,3 @@
-import sqlite3
 import os
 import pyqrcode
 from flask import (
@@ -79,10 +78,15 @@ def shortner():
 
 @app.route("/database")
 def database():
-    conn = sqlite3.connect("your database")
-    cur = conn.cursor()
-    url = cur.execute("SELECT * FROM url").fetchall()
-    conn.close()
+    # Another way to do this
+
+    # conn = sqlite3.connect("your database")
+    # cur = conn.cursor()
+    # url = cur.execute("SELECT * FROM url").fetchall()
+    # conn.close()
+
+    # A better way
+    url = Url.query.all()
     return render_template("database.html", url=url)
 
 
