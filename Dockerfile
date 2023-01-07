@@ -2,10 +2,15 @@
 
 FROM python:3.10.9
 
-WORKDIR /shortner
+WORKDIR /app
 
-ADD . /shortner
+COPY requirements.txt ./
 
 RUN pip install -r requirements.txt
 
-CMD ["flask", "run"]
+COPY . .
+
+EXPOSE 5000
+
+# --host 0.0.0.0 is important for accessing container outside
+CMD ["flask", "run", "--host", "0.0.0.0"]
