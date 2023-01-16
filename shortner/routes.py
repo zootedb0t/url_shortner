@@ -36,7 +36,7 @@ def favicon():
 @app.route("/")
 def home():
     response = make_response(render_template("index.html"), 200)
-    response.set_cookie("message", "Cookie time", samesite='Lax')
+    response.set_cookie("message", "Cookie time", samesite="Lax")
     return response
 
 
