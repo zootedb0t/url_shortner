@@ -25,6 +25,11 @@ https://api-ssl.bitly.com/v4/
 ```
 For more [info](https://dev.bitly.com/api-reference/#getGroups)
 
+If you don't want to modify code then make a file `api.py` and put your **Authorization** and **group_guid** in it like
+```
+Authorization="your authentication key"
+group_guid="your group_guid key"
+```
 
 ## App in action
 
