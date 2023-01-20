@@ -34,13 +34,9 @@ group_guid="your group_guid key"
 ## App in action
 
 ### App home page
-![App home page](./media/home.png)
 
 ### User database containing urls
-![Database](./media/database.png)
 
 ### Short-URL generated through api
-![Short_URL](./media/short_url.png)
 
 ### Short-URL QR Code
-![QR Code](./media/qrcode.png)
