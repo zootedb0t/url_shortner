@@ -34,9 +34,13 @@ group_guid="your group_guid key"
 ## App in action
 
 ### App home page
+![home](https://user-images.githubusercontent.com/62596687/213624221-bba14f00-35dd-4381-820d-adfa641485a6.png)
 
 ### User database containing urls
+![database](https://user-images.githubusercontent.com/62596687/213624333-9453182c-7081-42b0-abe0-c6e26ad26370.png)
 
 ### Short-URL generated through api
+![short_url](https://user-images.githubusercontent.com/62596687/213624495-397bd74b-41bc-4e3b-8a13-06681c1aa7e8.png)
 
 ### Short-URL QR Code
+![qrcode](https://user-images.githubusercontent.com/62596687/213624400-816bd8a3-d673-4d5d-8b15-016a56c1d020.png)
