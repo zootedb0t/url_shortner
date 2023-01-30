@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../static/styles.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to URL-Shortener</title>
+    <link rel="stylesheet" href="../static/styles.css" />
     <script src="../static/myscript.js"></script>
   </head>
 
   <body>
-    <h1>Your New URL</h1>
-    <p id="url">{{ link }}</p>
-    <button onclick="urlCopy('#url')">Copy url</button>
-    <button><a href="/" type="button">Goto Home</a></button>
+    <header>
+      <h1>URL Shortner</h1>
+    </header>
+    <p>
+      <a href="/database"
+        ><button class="database">
+          <img
+            src="/static/images/data_icon.svg"
+            alt="database-icon"
+            height="18"
+            width="18"
+          />
+          Check URL Database
+        </button></a
+      >
+    </p>
+    <p id="bitly">{{bitly}}</p>
+    <button onclick="urlCopy('#bitly')">Copy url</button>
     <footer class="info">
       <span>
         Created in

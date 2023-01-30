@@ -1,7 +1,6 @@
 import os
 import pyqrcode
 from flask import (
-    flash,
     render_template,
     request,
     redirect,
@@ -10,7 +9,6 @@ from flask import (
 )
 import requests
 import json
-import pyperclip
 from shortner import app
 from shortner.model import Url, db
 
@@ -127,9 +125,7 @@ def delete(id):
 def copytoclipboard(id):
     data = Url.query.filter_by(id=id).first()
     copy = data.short_url
-    pyperclip.copy(copy)
-    flash("Copied to clipboard")
-    return redirect("/database")
+    return render_template("copy.html", bitly=copy)
 
 
 @app.errorhandler(500)
