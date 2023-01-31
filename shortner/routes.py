@@ -124,8 +124,8 @@ def delete(id):
 @app.route("/copytoclipboard/<int:id>")
 def copytoclipboard(id):
     data = Url.query.filter_by(id=id).first()
-    copy = data.short_url
-    return render_template("copy.html", bitly=copy)
+    s_url = data.short_url
+    return render_template("copy.html", bitly_url=s_url)
 
 
 @app.errorhandler(500)
