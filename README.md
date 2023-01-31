@@ -5,7 +5,6 @@ A url-shortner built using flask and Bitly api. It has following dependencies:
 * Flask - Core dependency
 * SQLAlchemy - For working with database
 * requests - For sending GET and POST request
-* pyperclip - For copy to clipboard functionality
 * PyQRCode - For generating QR code of URL
 
 For using bitly api go to [Bitly](https://bitly.com/) 
