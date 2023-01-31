@@ -4,19 +4,12 @@
     <title>URL history</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../static/styles.css" />
-    <script src="../static/myscript.js"></script>
-    <script>
-      /* Removing flash messages */
-      function removeFlash() {
-        const element = document.getElementById("div_flash");
-        element.remove();
-      }
-
-      setTimeout(function () {
-        removeFlash();
-      }, 4000);
-    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css')}}"
+    />
+    <script src="{{url_for('static', filename='myscript.js')}}"></script>
   </head>
 
   <body>

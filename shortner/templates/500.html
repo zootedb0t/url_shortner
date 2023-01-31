@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>500 Error</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styles.css')}}"
+    />
+  </head>
 
-<head>
-  <title>500 Error</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="../static/styles.css" rel="stylesheet" />
-</head>
+  <body>
+    {% block content %}
+    <h1>{% block title %} 500 Internal Server Error{% endblock %}</h1>
+    <p id="error_msg">{{ error_message }} {% endblock %}</p>
 
-<body>
-  {% block content %}
-  <h1>{% block title %} 500 Internal Server Error{% endblock %}</h1>
-  <p id="error_msg">{{ error_message }} {% endblock %}</p>
-
-  <footer class="info">
-    <span>
-      Created in
-      <img src="/static/images/linux_icon.svg" alt="terminal" height="32" width="32" />
-      with
-      <img id="heart-animation" src="/static/images/heart_icon.svg" alt="heart" height="32" width="32" />
-      Checkout source code
-      <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-        <img id="git-animation" src="/static/images/git_icon.svg" alt="git" height="32" width="32" />
-      </a>
-    </span>
-  </footer>
-</body>
-
+    <footer class="info">
+      <span>
+        Created in
+        <img
+          src="/static/images/linux_icon.svg"
+          alt="terminal"
+          height="32"
+          width="32"
+        />
+        with
+        <img
+          id="heart-animation"
+          src="/static/images/heart_icon.svg"
+          alt="heart"
+          height="32"
+          width="32"
+        />
+        Checkout source code
+        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
+          <img
+            id="git-animation"
+            src="/static/images/git_icon.svg"
+            alt="git"
+            height="32"
+            width="32"
+          />
+        </a>
+      </span>
+    </footer>
+  </body>
 </html>
