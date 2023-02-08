@@ -13,43 +13,13 @@
 
   <body>
     <header>
-      <h1>URL Shortner</h1>
+      <h1><a href="/">URL Shortner</a></h1>
     </header>
-    <p>
-      <a href="/database"
-        ><button class="database">
-          <img
-            src="/static/images/data_icon.svg"
-            alt="database-icon"
-            height="18"
-            width="18"
-          />
-          Check URL Database
-        </button></a
-      >
-      <a href="/addkey">
-        <button class="database">
-          Add Bitly Api Keys
-        </button>
-      </a>
-    </p>
-    <form action="{{ url_for('shortner') }}" method="post" id="url_input">
-      <input
-        type="url"
-        name="data"
-        style="width: 300px; height: 30px"
-        placeholder="Enter URL"
-        required
-      />
-          <button type="submit" style="height: 30px">
-        <img
-          src="/static/images/send_icon.svg"
-          alt="send"
-          height="18"
-          width="18"
-        />
-        Submit URL
-      </button>
+    <p></p>
+    <form action="{{ url_for('addkey') }}" method="post">
+      <input type="text" name="apikey" placeholder="Enter Api Key" />
+      <input type="text" name="groupid" placeholder="Enter Group Id" />
+      <button type="submit">Submit Credentials</button>
     </form>
     <footer class="info">
       <span>

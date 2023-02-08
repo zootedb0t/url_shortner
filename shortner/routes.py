@@ -88,6 +88,22 @@ def database():
     return render_template("database.html", url=url)
 
 
+@app.route("/addkey")
+def keyform():
+    return render_template("addkey.html")
+
+
+@app.route("/addkey", methods=["POST"])
+def addkey():
+    apikey = request.form["apikey"]
+    groupid = request.form["groupid"]
+    if request.method == "POST":
+        api_string = f'Authorization="{apikey}"\ngroup_guid="{groupid}"'
+        with open("api.py", "w") as f:
+            f.write(api_string)
+    return render_template("index.html")
+
+
 @app.route("/qrcode/<int:id>")
 def getqr(id):
     # For bitly api
