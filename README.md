@@ -10,7 +10,7 @@ A url-shortner built using flask and Bitly api. It has following dependencies:
 For using bitly api go to [Bitly](https://bitly.com/) website and get a free account to get authentication key and group id. Use these credentials in the applications.
 
 To find out group_guid for your account. Make a GET request to
-`https://api-ssl.bitly.com/v4/` you can use Postman, Curl, Node or Python request module.
+`https://api-ssl.bitly.com/v4/groups` you can use Postman, Curl, Node or Python request module.
 
 While making request pass your Authorization token to header. In curl you can do this
 
@@ -18,7 +18,7 @@ While making request pass your Authorization token to header. In curl you can do
 curl \
 -H 'Authorization: Bearer {TOKEN}' \
 -X GET \
-https://api-ssl.bitly.com/v4/
+https://api-ssl.bitly.com/v4/groups
 ```
 
 For more [info](https://dev.bitly.com/api-reference/#getGroups)
