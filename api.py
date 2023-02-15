@@ -1,2 +1,2 @@
-Authorization="xxxxxxxxxxxxx"
-group_guid="xxxxxxxxxxxxx"
+Authorization="xxxxxxxxxx"
+group_guid="xxxxxxxxx"
