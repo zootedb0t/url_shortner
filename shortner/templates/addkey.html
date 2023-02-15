@@ -15,10 +15,12 @@
     <header>
       <h1><a href="/">URL Shortner</a></h1>
     </header>
-    <p></p>
+    <!-- This button will show all api keys added -->
+    <button></button>
     <form action="{{ url_for('addkey') }}" method="post">
-      <input type="text" name="apikey" placeholder="Enter Api Key" />
-      <input type="text" name="groupid" placeholder="Enter Group Id" />
+      <input type="text" name="name" placeholder="Give a name" required />
+      <input type="text" name="apikey" placeholder="Enter Api Key" required />
+      <input type="text" name="groupid" placeholder="Enter Group Id" required />
       <button type="submit">Submit Credentials</button>
     </form>
     <footer class="info">

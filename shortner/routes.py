@@ -10,10 +10,8 @@ from flask import (
 import requests
 import json
 from shortner import app
-from shortner.model import Url, db
+from shortner.model import Url, Key, db
 
-# Importing private api keys
-import api
 
 # Ensure database is created
 @app.before_first_request
@@ -38,16 +36,19 @@ def home():
     return response
 
 
-# Authkey and group-id are stored in api.py file
 @app.route("/shortner", methods=["POST", "GET"])
 def shortner():
+    # TODO: Find another way to do this. Instead of hard coding
+    bitlyKey = Key.query.filter_by(id=1).first()
+    key = bitlyKey.auth_key
+    gid = bitlyKey.grp_id
     if request.method == "POST":
         url = request.form["data"]
         headers = {
-            "Authorization": api.Authorization,
+            "Authorization": key,
             "Content-Type": "application/json",
         }
-        raw_data = {"long_url": url, "group_guid": api.group_guid}
+        raw_data = {"long_url": url, "group_guid": gid}
         # response returns a object after request. To get relevant data you need to
         # access the property you're after, e.g. r.status_code, r.text, etc.
         # here api returns data in json
@@ -95,12 +96,16 @@ def keyform():
 
 @app.route("/addkey", methods=["POST"])
 def addkey():
+    name = request.form["name"]
     apikey = request.form["apikey"]
     groupid = request.form["groupid"]
     if request.method == "POST":
-        api_string = f'Authorization="{apikey}"\ngroup_guid="{groupid}"'
-        with open("api.py", "w") as f:
-            f.write(api_string)
+        if Key.query.filter_by(auth_key=apikey).first():
+            return "Api key already present!!"
+        else:
+            new_key = Key(name=name, auth_key=apikey, grp_id=groupid)
+            db.session.add(new_key)
+            db.session.commit()
     return render_template("index.html")
 
 
