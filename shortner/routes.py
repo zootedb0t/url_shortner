@@ -1,6 +1,7 @@
 import os
 import pyqrcode
 from flask import (
+    flash,
     render_template,
     request,
     redirect,
@@ -96,24 +97,23 @@ def database():
     return render_template("database.html", url=url)
 
 
-@app.route("/addkey")
-def keyform():
-    key = Key.query.all()
-    return render_template("addkey.html", key=key)
-
-
-@app.route("/addkey", methods=["POST"])
+@app.route("/addkey", methods=["POST", "GET"])
 def addkey():
-    name = request.form["name"]
-    apikey = request.form["apikey"]
-    groupid = request.form["groupid"]
     if request.method == "POST":
+        name = request.form["name"]
+        apikey = request.form["apikey"]
+        groupid = request.form["groupid"]
         if Key.query.filter_by(auth_key=apikey).first():
             return "Api key already present!!"
         else:
             new_key = Key(name=name, auth_key=apikey, grp_id=groupid)
             db.session.add(new_key)
             db.session.commit()
+            key = Key.query.all()
+        return render_template("addkey.html", key=key)
+    if request.method == "GET":
+        key = Key.query.all()
+        return render_template("addkey.html", key=key)
     return render_template("index.html")
 
 
