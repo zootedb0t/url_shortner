@@ -18,8 +18,8 @@
     <p>
       <img src="{{ qrcode }}" alt="qrcode" />
     </p>
-    <a href="/">
-      <button type="submit">Goto Home</button>
+    <a href="{{ url_for('database')}}">
+      <button type="submit">Go Back</button>
     </a>
     {% endblock %}
 

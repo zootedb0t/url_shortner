@@ -1,10 +1,8 @@
 import os
 import pyqrcode
 from flask import (
-    flash,
     render_template,
     request,
-    redirect,
     make_response,
     send_from_directory,
 )
@@ -46,7 +44,8 @@ def shortner():
     bitlyKey = Key.query.filter_by(id=1).first()
     # Show message when no api-key is found.
     if bitlyKey is None:
-        return "Please add api key"
+        return '<h1 style="text-align: center">Please add api key. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
+
     else:
         key = bitlyKey.auth_key
         gid = bitlyKey.grp_id
@@ -147,7 +146,8 @@ def delete(id):
     data = Url.query.get(id)
     db.session.delete(data)
     db.session.commit()
-    return redirect("/")
+    url = Url.query.all()
+    return render_template("database.html", url=url)
 
 
 @app.route("/deletekey/<int:id>")

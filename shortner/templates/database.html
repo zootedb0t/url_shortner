@@ -18,14 +18,12 @@
     </header>
     <table align="center" id="data_tbl">
       <thead>
-        <th>Id</th>
         <th>Actual URL</th>
         <th>Short URL</th>
         <th>Actions</th>
       </thead>
       {% for data in url %}
       <tbody>
-        <td>{{ data.id }}</td>
         <td>{{ data.actual_url }}</td>
         <td>{{ data.short_url }}</td>
         <td>
