@@ -9,6 +9,11 @@ class Url(db.Model):
     actual_url = db.Column(db.String(120), index=True, unique=True)
     short_url = db.Column(db.String(60), index=True, unique=True)
 
+    # repr method represents how one object of this datatable
+    # will look like
+    def __repr__(self):
+        return f"URL : {self.actual_url}, Short: {self.short_url}"
+
 
 class Key(db.Model):
     __bind_key__ = "key"
@@ -18,4 +23,4 @@ class Key(db.Model):
     grp_id = db.Column(db.String(120), index=True, unique=True)
 
     def __repr__(self):
-        return f"URL : {self.actual_url}, Short: {self.short_url}"
+        return f"Auth-Key: {self.auth_key}, Group-Id: {self.grp_id}"

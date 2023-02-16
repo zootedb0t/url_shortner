@@ -10,6 +10,8 @@ from flask import (
 import requests
 import json
 from shortner import app
+
+# Database related stuff
 from shortner.model import Url, Key, db
 
 
@@ -31,6 +33,7 @@ def favicon():
 
 @app.route("/")
 def home():
+    # response for setting cookie
     response = make_response(render_template("index.html"), 200)
     response.set_cookie("message", "Cookie time", samesite="Lax")
     return response
@@ -40,8 +43,12 @@ def home():
 def shortner():
     # TODO: Find another way to do this. Instead of hard coding
     bitlyKey = Key.query.filter_by(id=1).first()
-    key = bitlyKey.auth_key
-    gid = bitlyKey.grp_id
+    # Show message when no api-key is found.
+    if bitlyKey is None:
+        return "Please add api key"
+    else:
+        key = bitlyKey.auth_key
+        gid = bitlyKey.grp_id
     if request.method == "POST":
         url = request.form["data"]
         headers = {
@@ -51,7 +58,7 @@ def shortner():
         raw_data = {"long_url": url, "group_guid": gid}
         # response returns a object after request. To get relevant data you need to
         # access the property you're after, e.g. r.status_code, r.text, etc.
-        # here api returns data in json
+        # response has type dictionary
         response = requests.post(
             "https://api-ssl.bitly.com/v4/shorten",
             headers=headers,
@@ -91,7 +98,8 @@ def database():
 
 @app.route("/addkey")
 def keyform():
-    return render_template("addkey.html")
+    key = Key.query.all()
+    return render_template("addkey.html", key=key)
 
 
 @app.route("/addkey", methods=["POST"])
@@ -125,8 +133,8 @@ def getqr(id):
 
     # Generating qr code using pyqrcode module
     data = Url.query.filter_by(id=id).first()
-    url_secure = data.short_url
-    qr_obj = pyqrcode.create(url_secure)
+    url = data.short_url
+    qr_obj = pyqrcode.create(url)
     # qr_code = qr_obj.png("file.png", scale=10, background="#FFFFFF")
     image_as_str = qr_obj.png_as_base64_str(scale=10)
 
@@ -142,11 +150,20 @@ def delete(id):
     return redirect("/")
 
 
+@app.route("/deletekey/<int:id>")
+def deletekey(id):
+    data = Key.query.get(id)
+    print(data)
+    db.session.delete(data)
+    db.session.commit()
+    return render_template("addkey.html")
+
+
 @app.route("/copytoclipboard/<int:id>")
 def copytoclipboard(id):
     data = Url.query.filter_by(id=id).first()
-    s_url = data.short_url
-    return render_template("copy.html", bitly_url=s_url)
+    url = data.short_url
+    return render_template("copy.html", bitly_url=url)
 
 
 @app.errorhandler(500)

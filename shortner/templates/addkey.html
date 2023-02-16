@@ -15,14 +15,36 @@
     <header>
       <h1><a href="/">URL Shortner</a></h1>
     </header>
-    <!-- This button will show all api keys added -->
-    <button></button>
     <form action="{{ url_for('addkey') }}" method="post">
       <input type="text" name="name" placeholder="Give a name" required />
       <input type="text" name="apikey" placeholder="Enter Api Key" required />
       <input type="text" name="groupid" placeholder="Enter Group Id" required />
       <button type="submit">Submit Credentials</button>
     </form>
+    <div id="keylist">
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Api Key</th>
+          <th>Group ID</th>
+          <th>Action</th>
+        </thead>
+        {% for data in key %}
+        <tbody>
+          <td>{{data.id}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.auth_key}}</td>
+          <td>{{data.grp_id}}</td>
+          <td>
+            <button type="submit">
+              <a href="{{url_for('deletekey', id=data.id)}}">Delete</a>
+            </button>
+          </td>
+        </tbody>
+        {% endfor %}
+      </table>
+    </div>
     <footer class="info">
       <span>
         Created in
