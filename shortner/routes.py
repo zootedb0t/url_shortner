@@ -43,14 +43,13 @@ def shortner():
     # TODO: Find another way to do this. Instead of hard coding
     bitlyKey = Key.query.filter_by(id=1).first()
     # Show message when no api-key is found.
-    if bitlyKey is None:
-        return '<h1 style="text-align: center">Please add api key. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
-
-    else:
-        key = bitlyKey.auth_key
-        gid = bitlyKey.grp_id
     if request.method == "POST":
-        url = request.form["data"]
+        if bitlyKey is None:
+            return '<h1 style="text-align: center">Please add api key. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
+        else:
+            key = bitlyKey.auth_key
+            gid = bitlyKey.grp_id
+            url = request.form["data"]
         headers = {
             "Authorization": key,
             "Content-Type": "application/json",
@@ -79,7 +78,7 @@ def shortner():
                 db.session.commit()
         return render_template("slink.html", link=short_link)
     else:
-        return "Please use POST method GET is not allowed"
+        return '<h1 style="text-align: center">Please use POST method GET is not allowed. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
 
 
 @app.route("/database")
@@ -141,7 +140,7 @@ def getqr(id):
     return render_template("qrcode.html", qrcode=image)
 
 
-@app.route("/delete/<int:id>")
+@app.route("/delete/<int:id>", methods=["POST"])
 def delete(id):
     data = Url.query.get(id)
     db.session.delete(data)
@@ -150,10 +149,9 @@ def delete(id):
     return render_template("database.html", url=url)
 
 
-@app.route("/deletekey/<int:id>")
+@app.route("/deletekey/<int:id>", methods=["POST"])
 def deletekey(id):
     data = Key.query.get(id)
-    print(data)
     db.session.delete(data)
     db.session.commit()
     return render_template("addkey.html")

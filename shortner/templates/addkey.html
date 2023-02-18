@@ -37,9 +37,9 @@
           <td>{{data.auth_key}}</td>
           <td>{{data.grp_id}}</td>
           <td>
-            <button type="submit">
-              <a href="{{url_for('deletekey', id=data.id)}}">Delete</a>
-            </button>
+            <form method="post" action="{{url_for('deletekey', id=data.id)}}">
+              <button type="submit">Delete Key</button>
+            </form>
           </td>
         </tbody>
         {% endfor %}
