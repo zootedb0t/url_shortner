@@ -33,10 +33,6 @@ a {
   color: black;
 }
 
-#url_input {
-  padding: 30px;
-}
-
 .data {
   padding: 150px;
   height: 60px;
@@ -44,6 +40,7 @@ a {
 
 .database {
   padding: 15px 25px;
+  margin: 10px;
   font-size: 24px;
   cursor: pointer;
   outline: none;
@@ -156,12 +153,18 @@ footer {
   margin: auto;
 }
 
-#keylist table{
+#keylist table {
   margin-left: auto;
   margin-right: auto;
   width: 60%;
 }
 
-#keylist th{
+#keylist th {
   border: none;
+}
+
+#url p{
+  background-color: #D4F1F4;
+  padding: 5px;
+  font-size: 24px;
 }

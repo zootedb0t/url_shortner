@@ -91,8 +91,11 @@ def database():
     # conn.close()
 
     # A better way
-    url = Url.query.all()
-    return render_template("database.html", url=url)
+    url = Url.query.all()  # url is list
+    if len(url) == 0:
+        return '<h1 style="text-align: center">Database is empty. Add some url.<a href="/">Go to home</a></h1>'
+    else:
+        return render_template("database.html", url=url)
 
 
 @app.route("/addkey", methods=["POST", "GET"])

@@ -14,9 +14,11 @@
 
   <body>
     <h1>Your New URL</h1>
-    <p id="url">{{ link }}</p>
-    <button onclick="urlCopy('#url')">Copy url</button>
-    <button><a href="/" type="button">Goto Home</a></button>
+    <div id="url">
+      <p>{{ link }}</p>
+      <button onclick="urlCopy('#url')">Copy url</button>
+      <button><a href="/" type="button">Goto Home</a></button>
+    </div>
     <footer class="info">
       <span>
         Made in
