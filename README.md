@@ -23,6 +23,12 @@ https://api-ssl.bitly.com/v4/groups
 
 For more [info](https://dev.bitly.com/api-reference/#getGroups)
 
+## Running App Locally
+- Clone the repo `git clone https://github.com/zootedb0t/url_shortner && cd url_shortner`.
+- Create a python virtual environment using `python -m venv venv`.
+- Install required modules `pip install -r requirements.txt`.
+- Run app using `flask run`
+
 ## App in action
 
 ### App home page
