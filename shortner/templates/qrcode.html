@@ -9,18 +9,19 @@
       type="text/css"
       href="{{ url_for('static', filename='styles.css')}}"
     />
+    <script src="{{url_for('static', filename='myscript.js')}}"></script>
   </head>
 
   <body>
     {% block content %}
     <h1>{% block title %} QR Code {% endblock %}</h1>
-
     <p>
-      <img src="{{ qrcode }}" alt="qrcode" />
+      <img src="{{ qrcode }}" alt="qrcode" id="embedImage" />
     </p>
     <a href="{{ url_for('database')}}">
       <button type="submit">Go Back</button>
     </a>
+    <button id="saveImg">Download QR code</button>
     {% endblock %}
 
     <footer class="info">
