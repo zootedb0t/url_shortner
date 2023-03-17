@@ -45,7 +45,8 @@ For more [info](https://dev.bitly.com/api-reference/#getGroups)
 
 ### Short-URL generated through api
 
-![short_url](https://user-images.githubusercontent.com/62596687/213624495-397bd74b-41bc-4e3b-8a13-06681c1aa7e8.png)
+![Screenshot_2023-03-17-11-46-59_1920x1080](https://user-images.githubusercontent.com/62596687/225827693-0fb0b78b-46ec-4f1b-bfb0-1fa19f24beb1.png)
 
 ### Short-URL QR Code
-![Screenshot_2023-02-09-09-17-06_1920x1080](https://user-images.githubusercontent.com/62596687/217714025-910f286e-ecf2-4557-9d42-339e66724014.png)
+
+![Screenshot_2023-03-17-11-43-27_1920x1080](https://user-images.githubusercontent.com/62596687/225827304-4635c979-2da5-46fb-98af-a4c94ce7c0a0.png)
