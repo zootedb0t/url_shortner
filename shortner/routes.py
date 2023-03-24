@@ -167,12 +167,15 @@ def copytoclipboard(id):
     return render_template("copy.html", bitly_url=url)
 
 
-@app.route("/query", methods=["POST", "GET"])
-def query():
+@app.route("/query", methods=["POST"])
+def search_database():
     search_query = request.form["query"]
-    match = Url.query.filter(Url.actual_url.contains(search_query)).all()
+    match = Url.query.filter(Url.actual_url.contains(search_query)).all() # This returns a list
 
-    return render_template("database.html", url=match)
+    if len(match) == 0:
+        return '<h1 style="text-align: center">No match found!</h1>'
+    else:
+        return render_template("database.html", url=match)
 
 
 @app.errorhandler(500)
