@@ -41,7 +41,7 @@ For more [info](https://dev.bitly.com/api-reference/#getGroups)
 
 ### User database containing urls
 
-![Screenshot_2023-02-09-09-16-26_1920x1080](https://user-images.githubusercontent.com/62596687/217713936-6fb3137f-c4c5-46ec-a2d9-16a16fa2c8c4.png)
+![Screenshot_2023-03-24-01-54-00_1920x1080](https://user-images.githubusercontent.com/62596687/227464959-4840ac87-7ebe-48ae-b7aa-4208f9ea0481.png)
 
 ### Short-URL generated through api
 
