@@ -167,6 +167,14 @@ def copytoclipboard(id):
     return render_template("copy.html", bitly_url=url)
 
 
+@app.route("/query", methods=["POST", "GET"])
+def query():
+    search_query = request.form["query"]
+    match = Url.query.filter(Url.actual_url.contains(search_query)).all()
+
+    return render_template("database.html", url=match)
+
+
 @app.errorhandler(500)
 def basic_error(e):
     error_msg = e

@@ -17,6 +17,12 @@
       <h1><a href="/">URL Database</a></h1>
     </header>
     <table align="center" id="data_tbl">
+      <div style="margin: 10px";>
+        <form action="{{ url_for('query')}}" method="post">
+          <input type="text" name="query" placeholder="Search Query"/>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
       <thead>
         <th>Actual URL</th>
         <th>Short URL</th>
