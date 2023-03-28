@@ -6,11 +6,13 @@ function urlCopy(e) {
 }
 
 // Save qr-code
-window.addEventListener("DOMContentLoaded", () => {
-  const img = document.getElementById("embedImage");
+function saveQrCode() {
+  window.addEventListener("click", () => {
+    const img = document.getElementById("embedImage");
 
-  const button = document.getElementById("saveImg");
-  button.addEventListener("click", () => {
-    window.location.href = img.src.replace("image/png", "image/octet-stream");
+    const button = document.getElementById("saveImg");
+    button.addEventListener("click", () => {
+      window.location.href = img.src.replace("image/png", "image/octet-stream");
+    });
   });
-});
+}
