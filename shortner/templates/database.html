@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>URL history</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles.css')}}"
-    />
+    <title>URL Database</title>
     <script src="{{url_for('static', filename='myscript.js')}}"></script>
   </head>
 
   <body>
-    <header>
-      <h1><a href="/">URL Database</a></h1>
-    </header>
+    {% extends "base.html" %} {% block content %}
     <table align="center" id="data_tbl">
-      <div style="margin: 10px";>
+      <div style="margin: 10px" ;>
         <form action="{{ url_for('search_database')}}" method="post">
-          <input type="text" name="query" placeholder="Search"/>
+          <input type="text" name="query" placeholder="Search" />
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -28,56 +19,32 @@
         <th>Short URL</th>
         <th>Actions</th>
       </thead>
-    {% for data in url %}
+      {% for data in url %}
       <tbody>
         <td>{{ data.actual_url }}</td>
         <td>{{ data.short_url }}</td>
         <td>
-          <form method="post" action="{{url_for('deleteurl', id=data.id )}}" style="display: inline;">
-          <button type="submit">Delete</button>
+          <form
+            method="post"
+            action="{{url_for('deleteurl', id=data.id )}}"
+            style="display: inline"
+          >
+            <button type="submit">Delete</button>
           </form>
-            <button type="submit">
-              <a href="{{url_for('getqr', id=data.id )}}" type="button"
-                >Get QR Code</a
-              >
-            </button>
-            <button type="submit">
-              <a href="{{url_for('copytoclipboard', id=data.id)}}" type="button"
-                >Copy to clipboard</a
-              >
-            </button>
+          <button type="submit">
+            <a href="{{url_for('getqr', id=data.id )}}" type="button"
+              >Get QR Code</a
+            >
+          </button>
+          <button type="submit">
+            <a href="{{url_for('copytoclipboard', id=data.id)}}" type="button"
+              >Copy to clipboard</a
+            >
+          </button>
         </td>
       </tbody>
       {% endfor %}
     </table>
-    <footer class="info">
-      <span>
-        Made in
-        <img
-          src="/static/images/linux_icon.svg"
-          alt="terminal"
-          height="24"
-          width="24"
-        />
-        with
-        <img
-          id="heart-animation"
-          src="/static/images/heart_icon.svg"
-          alt="heart"
-          height="24"
-          width="24"
-        />
-        Checkout source code
-        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-          <img
-            id="git-animation"
-            src="/static/images/git_icon.svg"
-            alt="git"
-            height="24"
-            width="24"
-          />
-        </a>
-      </span>
-    </footer>
+    {% endblock %}
   </body>
 </html>

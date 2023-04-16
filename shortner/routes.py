@@ -44,12 +44,12 @@ def home():
 
 @app.route("/shortner", methods=["POST", "GET"])
 def shortner():
-    activeid = request.form["currentapikey"]
-    bitlyKey = Key.query.filter_by(id=activeid).first()
     # Show message when no api-key is found.
     if request.method == "POST":
+        activeid = request.form["currentapikey"]
+        bitlyKey = Key.query.filter_by(id=activeid).first()
         if bitlyKey is None:
-            return '<h1 style="text-align: center">Please add api key. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
+            return render_template("error.html", message="Please add api key.")
         else:
             key = bitlyKey.auth_key
             gid = bitlyKey.grp_id
@@ -71,7 +71,7 @@ def shortner():
         data = response.json()
         # Check server response code
         if response.status_code != 200:
-            return '<h1 style="text-align: center">Something went wrong!. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
+            return render_template("error.html", message="Something went wrong!!")
         else:
             # Conversion from python dictionary to json
             format = json.dumps(data, indent=2)
@@ -88,7 +88,9 @@ def shortner():
                 db.session.commit()
         return render_template("slink.html", link=short_link)
     else:
-        return '<h1 style="text-align: center">Please use POST method GET is not allowed. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
+        return render_template(
+            "error.html", message="Please use POST method GET is not allowed."
+        )
 
 
 @app.route("/database")
@@ -103,7 +105,7 @@ def database():
     # A better way
     url = Url.query.all()  # url is list
     if len(url) == 0:
-        return '<h1 style="text-align: center">Database is empty. Add some url.<a href="/">Go to home</a></h1>'
+        return render_template("error.html", message='Database is empty. Add some url.')
     else:
         return render_template("database.html", url=url)
 
@@ -185,7 +187,7 @@ def search_database():
     ).all()  # This returns a list
 
     if len(match) == 0:
-        return '<h1 style="text-align: center">No match found!</h1>'
+        return render_template("error.html", message='No match found!')
     else:
         return render_template("database.html", url=match)
 
@@ -193,4 +195,4 @@ def search_database():
 @app.errorhandler(500)
 def basic_error(e):
     error_msg = e
-    return render_template("500.html", error_message=error_msg)
+    return render_template("error.html", message=error_msg)

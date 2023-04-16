@@ -2,20 +2,10 @@
 <html lang="en">
   <head>
     <title>Duplicate URL</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles.css')}}"
-    />
   </head>
 
   <body>
-    {% block content %}
-    <header>
-      <h1><a href="/">Check URL Database</a></h1>
-    </header>
+    {% extends "base.html" %} {% block content %}
     <p id="duplicate">
       <em>
         <a href="{{ duplicate }}" target="_blank" rel="noopener noreferrer"
@@ -25,34 +15,5 @@
       is already in our database.
     </p>
     {% endblock %}
-    <footer class="info">
-      <span>
-        Made in
-        <img
-          src="/static/images/linux_icon.svg"
-          alt="terminal"
-          height="24"
-          width="24"
-        />
-        with
-        <img
-          id="heart-animation"
-          src="/static/images/heart_icon.svg"
-          alt="heart"
-          height="24"
-          width="24"
-        />
-        Checkout source code
-        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-          <img
-            id="git-animation"
-            src="/static/images/git_icon.svg"
-            alt="git"
-            height="24"
-            width="24"
-          />
-        </a>
-      </span>
-    </footer>
   </body>
 </html>

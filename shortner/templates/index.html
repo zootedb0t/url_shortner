@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to URL-Shortener</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles.css')}}"
-    />
   </head>
 
   <body>
-    <header>
-      <h1>URL Shortner</h1>
-    </header>
+    {% extends "base.html" %} {% block content %}
     <p>
       <a href="/database"
         ><button class="database">
@@ -40,16 +31,15 @@
       </a>
     </p>
     <form action="{{ url_for('shortner') }}" method="post">
-      <label for="apikey">Select a key</label>
+      <label for="apikey">Select a key:</label>
       <select name="currentapikey">
         {% for key in apikeys %}
-        <option value={{ key.id }}>{{ key.name}}</option>
+        <option value={{ key.id }}>{{ key.name }}</option>
         {% endfor %}
       </select>
       <input
         type="url"
         name="data"
-        style="width: 300px; height: 30px"
         placeholder="Enter URL"
         required
       />
@@ -57,40 +47,12 @@
         <img
           src="/static/images/send_icon.svg"
           alt="send"
-          height="18"
-          width="18"
+          height="15"
+          width="15"
         />
         Submit URL
       </button>
     </form>
-    <footer class="info">
-      <span>
-        Made in
-        <img
-          src="/static/images/linux_icon.svg"
-          alt="terminal"
-          height="24"
-          width="24"
-        />
-        with
-        <img
-          id="heart-animation"
-          src="/static/images/heart_icon.svg"
-          alt="heart"
-          height="24"
-          width="24"
-        />
-        Checkout source code
-        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-          <img
-            id="git-animation"
-            src="/static/images/git_icon.svg"
-            alt="git"
-            height="24"
-            width="24"
-          />
-        </a>
-      </span>
-    </footer>
+    {% endblock %}
   </body>
 </html>

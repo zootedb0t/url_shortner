@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to URL-Shortener</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles.css')}}"
-    />
+    <title>Add Api Keys</title>
   </head>
 
   <body>
-    <header>
-      <h1><a href="/">URL Shortner</a></h1>
-    </header>
+    {% extends "base.html" %} {% block content %}
     <form action="{{ url_for('addkey') }}" method="post">
       <input type="text" name="name" placeholder="Give a name" required />
       <input type="text" name="apikey" placeholder="Enter Api Key" required />
@@ -45,34 +36,6 @@
         {% endfor %}
       </table>
     </div>
-    <footer class="info">
-      <span>
-        Made in
-        <img
-          src="/static/images/linux_icon.svg"
-          alt="terminal"
-          height="24"
-          width="24"
-        />
-        with
-        <img
-          id="heart-animation"
-          src="/static/images/heart_icon.svg"
-          alt="heart"
-          height="24"
-          width="24"
-        />
-        Checkout source code
-        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-          <img
-            id="git-animation"
-            src="/static/images/git_icon.svg"
-            alt="git"
-            height="24"
-            width="24"
-          />
-        </a>
-      </span>
-    </footer>
+    {% endblock %}
   </body>
 </html>

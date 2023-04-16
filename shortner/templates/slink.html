@@ -1,52 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title></title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='styles.css')}}"
-    />
+    <title>Welcome to URL-Shortener</title>
     <script src="{{url_for('static', filename='myscript.js')}}"></script>
   </head>
 
   <body>
-    <h1>Your New URL</h1>
+    {% extends "base.html" %} {% block content %}
     <div id="url">
       <p>{{ link }}</p>
       <button onclick="urlCopy('#url')">Copy url</button>
       <button><a href="/" type="button">Goto Home</a></button>
     </div>
-    <footer class="info">
-      <span>
-        Made in
-        <img
-          src="/static/images/linux_icon.svg"
-          alt="terminal"
-          height="24"
-          width="24"
-        />
-        with
-        <img
-          id="heart-animation"
-          src="/static/images/heart_icon.svg"
-          alt="heart"
-          height="24"
-          width="24"
-        />
-        Checkout source code
-        <a href="https://github.com/zootedb0t/url_shortner" target="_blank">
-          <img
-            id="git-animation"
-            src="/static/images/git_icon.svg"
-            alt="git"
-            height="24"
-            width="24"
-          />
-        </a>
-      </span>
-    </footer>
+    {% endblock %}
   </body>
 </html>
