@@ -40,6 +40,12 @@
       </a>
     </p>
     <form action="{{ url_for('shortner') }}" method="post">
+      <label for="apikey">Select a key</label>
+      <select name="currentapikey">
+        {% for key in apikeys %}
+        <option value={{ key.id }}>{{ key.name}}</option>
+        {% endfor %}
+      </select>
       <input
         type="url"
         name="data"
@@ -47,7 +53,7 @@
         placeholder="Enter URL"
         required
       />
-          <button type="submit" style="height: 30px">
+      <button>
         <img
           src="/static/images/send_icon.svg"
           alt="send"

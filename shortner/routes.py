@@ -35,13 +35,17 @@ def home():
     # response for setting cookie
     response = make_response(render_template("index.html"), 200)
     response.set_cookie("message", "Cookie time", samesite="Lax")
-    return response
+    apikeys = Key.query.all()
+    if len(apikeys) == 0:
+        return render_template("index.html", apikeys="")
+    else:
+        return render_template("index.html", apikeys=apikeys)
 
 
 @app.route("/shortner", methods=["POST", "GET"])
 def shortner():
-    # TODO: Find another way to do this. Instead of hard coding
-    bitlyKey = Key.query.filter_by(id=1).first()
+    activeid = request.form["currentapikey"]
+    bitlyKey = Key.query.filter_by(id=activeid).first()
     # Show message when no api-key is found.
     if request.method == "POST":
         if bitlyKey is None:
@@ -63,16 +67,22 @@ def shortner():
             headers=headers,
             # Conversion from python to json
             data=json.dumps(raw_data),
-        ).json()
-        # Conversion from python dictionary to json
-        format = json.dumps(response, indent=2)
-        short_link = json.loads(format)["link"]
+        )
+        data = response.json()
+        # Check server response code
+        if response.status_code != 200:
+            return '<h1 style="text-align: center">Something went wrong!. <a href="https://github.com/zootedb0t/url_shortner">Know more</a></h1>'
+        else:
+            # Conversion from python dictionary to json
+            format = json.dumps(data, indent=2)
+            short_link = json.loads(format)["link"]
 
         # Check for duplicates
         if url != "" and short_link != "":
             if Url.query.filter_by(actual_url=url).first():
                 return render_template("duplicate.html", duplicate=url)
             else:
+                # Add url to database
                 p = Url(actual_url=url, short_url=short_link)
                 db.session.add(p)
                 db.session.commit()
@@ -112,10 +122,9 @@ def addkey():
             db.session.commit()
             key = Key.query.all()
         return render_template("addkey.html", key=key)
-    if request.method == "GET":
+    else:
         key = Key.query.all()
         return render_template("addkey.html", key=key)
-    return render_template("index.html")
 
 
 @app.route("/qrcode/<int:id>")
@@ -143,8 +152,8 @@ def getqr(id):
     return render_template("qrcode.html", qrcode=image)
 
 
-@app.route("/delete/<int:id>", methods=["POST"])
-def delete(id):
+@app.route("/deleteurl/<int:id>", methods=["POST"])
+def deleteurl(id):
     data = Url.query.get(id)
     db.session.delete(data)
     db.session.commit()
@@ -157,7 +166,8 @@ def deletekey(id):
     data = Key.query.get(id)
     db.session.delete(data)
     db.session.commit()
-    return render_template("addkey.html")
+    key = Key.query.all()
+    return render_template("addkey.html", key=key)
 
 
 @app.route("/copytoclipboard/<int:id>")
@@ -170,7 +180,9 @@ def copytoclipboard(id):
 @app.route("/query", methods=["POST"])
 def search_database():
     search_query = request.form["query"]
-    match = Url.query.filter(Url.actual_url.contains(search_query)).all() # This returns a list
+    match = Url.query.filter(
+        Url.actual_url.contains(search_query)
+    ).all()  # This returns a list
 
     if len(match) == 0:
         return '<h1 style="text-align: center">No match found!</h1>'

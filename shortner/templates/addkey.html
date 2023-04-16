@@ -22,7 +22,6 @@
       <button type="submit">Submit Credentials</button>
     </form>
     <div id="keylist">
-      {% for data in key %}
       <table>
         <thead>
           <th>ID</th>
@@ -31,6 +30,7 @@
           <th>Group ID</th>
           <th>Action</th>
         </thead>
+        {% for data in key %}
         <tbody>
           <td>{{data.id}}</td>
           <td>{{data.name}}</td>

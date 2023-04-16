@@ -33,7 +33,7 @@
         <td>{{ data.actual_url }}</td>
         <td>{{ data.short_url }}</td>
         <td>
-          <form method="post" action="{{url_for('delete', id=data.id )}}" style="display: inline;">
+          <form method="post" action="{{url_for('deleteurl', id=data.id )}}" style="display: inline;">
           <button type="submit">Delete</button>
           </form>
             <button type="submit">
