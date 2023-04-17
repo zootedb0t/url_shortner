@@ -6,7 +6,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: black;
 }
 
 h1 {
@@ -14,10 +14,7 @@ h1 {
   padding: 15px;
   /* Remove gap between header and top*/
   margin-top: 0;
-  /* background-color: #33e9ff; */
   background-color: #04aa6d;
-  color: #fff;
-
   box-shadow: 0 9px #999;
   border-radius: 0px 0px 15px 15px;
 }
@@ -39,7 +36,6 @@ a {
   font-size: 24px;
   cursor: pointer;
   outline: none;
-  color: #fff;
   background-color: #04aa6d;
   border: none;
   border-radius: 15px;

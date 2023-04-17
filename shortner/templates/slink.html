@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Welcome to URL-Shortener</title>
-    <script src="{{url_for('static', filename='myscript.js')}}"></script>
-  </head>
-
-  <body>
-    {% extends "base.html" %} {% block content %}
-    <div id="url">
-      <p>{{ link }}</p>
-      <button onclick="urlCopy('#url')">Copy url</button>
-      <button><a href="/" type="button">Goto Home</a></button>
-    </div>
-    {% endblock %}
-  </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Bitly Link{% endblock %}
+{% block content %}
+<div id="url">
+  <p>{{ link }}</p>
+  <button onclick="urlCopy('#url')">Copy url</button>
+  <button><a href="/" type="button">Goto Home</a></button>
+</div>
+{% endblock %}

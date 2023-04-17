@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Duplicate URL</title>
-  </head>
+{% extends "base.html" %}
+{% block title %}Duplicate URL{% endblock %}
 
-  <body>
-    {% extends "base.html" %} {% block content %}
-    <p id="duplicate">
-      <em>
-        <a href="{{ duplicate }}" target="_blank" rel="noopener noreferrer"
-          >{{ duplicate }}</a
-        >
-      </em>
-      is already in our database.
-    </p>
-    {% endblock %}
-  </body>
-</html>
+{% block content %}
+<p id="duplicate">
+  <em>
+    <a href="{{ duplicate }}" target="_blank" rel="noopener noreferrer"
+      >{{ duplicate }}</a
+    >
+  </em>
+  is already in our database.
+</p>
+{% endblock %}
