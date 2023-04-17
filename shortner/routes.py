@@ -46,11 +46,12 @@ def home():
 def shortner():
     # Show message when no api-key is found.
     if request.method == "POST":
-        activeid = request.form["currentapikey"]
-        bitlyKey = Key.query.filter_by(id=activeid).first()
-        if bitlyKey is None:
+        bitlyKey = Key.query.all()
+        if len(bitlyKey) == 0:
             return render_template("error.html", message="Please add api key.")
         else:
+            activeid = request.form["currentapikey"]
+            bitlyKey = Key.query.filter_by(id=activeid).first()
             key = bitlyKey.auth_key
             gid = bitlyKey.grp_id
             url = request.form["data"]
@@ -105,7 +106,7 @@ def database():
     # A better way
     url = Url.query.all()  # url is list
     if len(url) == 0:
-        return render_template("error.html", message='Database is empty. Add some url.')
+        return render_template("error.html", message="Database is empty. Add some url.")
     else:
         return render_template("database.html", url=url)
 
@@ -187,7 +188,7 @@ def search_database():
     ).all()  # This returns a list
 
     if len(match) == 0:
-        return render_template("error.html", message='No match found!')
+        return render_template("error.html", message="No match found!")
     else:
         return render_template("database.html", url=match)
 
