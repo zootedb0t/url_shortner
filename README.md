@@ -1,4 +1,4 @@
-# URL Shortener App
+# URL Shortener App [![Pylint](https://github.com/zootedb0t/url_shortner/actions/workflows/pylint.yml/badge.svg)](https://github.com/zootedb0t/url_shortner/actions/workflows/pylint.yml)
 
 A url-shortner built using flask and Bitly api. It has following dependencies:
 
