@@ -20,18 +20,18 @@
     <td>
       <form
         method="post"
-        action="{{url_for('deleteurl', id=data.id )}}"
+        action="{{url_for('deleteurl', url_id=data.id )}}"
         style="display: inline"
       >
         <button type="submit">Delete</button>
       </form>
       <button type="submit">
-        <a href="{{url_for('getqr', id=data.id )}}" type="button"
+        <a href="{{url_for('getqr', url_id=data.id )}}" type="button"
           >Get QR Code</a
         >
       </button>
       <button type="submit">
-        <a href="{{url_for('copytoclipboard', id=data.id)}}" type="button"
+        <a href="{{url_for('copytoclipboard', url_id=data.id)}}" type="button"
           >Copy to clipboard</a
         >
       </button>

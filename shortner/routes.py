@@ -1,4 +1,5 @@
 import os
+import json
 import pyqrcode
 from flask import (
     render_template,
@@ -7,7 +8,6 @@ from flask import (
     send_from_directory,
 )
 import requests
-import json
 from shortner import app
 
 # Database related stuff
@@ -38,23 +38,22 @@ def home():
     apikeys = Key.query.all()
     if len(apikeys) == 0:
         return render_template("index.html", apikeys="")
-    else:
-        return render_template("index.html", apikeys=apikeys)
+    return render_template("index.html", apikeys=apikeys)
 
 
 @app.route("/shortner", methods=["POST", "GET"])
 def shortner():
     # Show message when no api-key is found.
     if request.method == "POST":
-        bitlyKey = Key.query.all()
-        if len(bitlyKey) == 0:
+        bitly_key = Key.query.all()
+        if len(bitly_key) == 0:
             return render_template("error.html", message="Please add api key.")
-        else:
-            activeid = request.form["currentapikey"]
-            bitlyKey = Key.query.filter_by(id=activeid).first()
-            key = bitlyKey.auth_key
-            gid = bitlyKey.grp_id
-            url = request.form["data"]
+        # else:
+        activeid = request.form["currentapikey"]
+        bitly_key = Key.query.filter_by(id=activeid).first()
+        key = bitly_key.auth_key
+        gid = bitly_key.grp_id
+        url = request.form["data"]
         headers = {
             "Authorization": key,
             "Content-Type": "application/json",
@@ -71,27 +70,25 @@ def shortner():
         )
         data = response.json()
         # Check server response code
-        if response.status_code != 200:
-            return render_template("error.html", message="Something went wrong!!")
-        else:
+        if response.status_code == 200:
             # Conversion from python dictionary to json
-            format = json.dumps(data, indent=2)
-            short_link = json.loads(format)["link"]
+            data_format = json.dumps(data, indent=2)
+            short_link = json.loads(data_format)["link"]
+        else:
+            return render_template("error.html", message="Something went wrong!!")
 
         # Check for duplicates
         if url != "" and short_link != "":
             if Url.query.filter_by(actual_url=url).first():
                 return render_template("duplicate.html", duplicate=url)
-            else:
-                # Add url to database
-                p = Url(actual_url=url, short_url=short_link)
-                db.session.add(p)
-                db.session.commit()
+            # Add url to database
+            p = Url(actual_url=url, short_url=short_link)
+            db.session.add(p)
+            db.session.commit()
         return render_template("slink.html", link=short_link)
-    else:
-        return render_template(
-            "error.html", message="Please use POST method GET is not allowed."
-        )
+    return render_template(
+        "error.html", message="Please use POST method GET is not allowed."
+    )
 
 
 @app.route("/database")
@@ -107,8 +104,7 @@ def database():
     url = Url.query.all()  # url is list
     if len(url) == 0:
         return render_template("error.html", message="Database is empty. Add some url.")
-    else:
-        return render_template("database.html", url=url)
+    return render_template("database.html", url=url)
 
 
 @app.route("/addkey", methods=["POST", "GET"])
@@ -119,19 +115,17 @@ def addkey():
         groupid = request.form["groupid"]
         if Key.query.filter_by(auth_key=apikey).first():
             return "Api key already present!!"
-        else:
-            new_key = Key(name=name, auth_key=apikey, grp_id=groupid)
-            db.session.add(new_key)
-            db.session.commit()
-            key = Key.query.all()
-        return render_template("addkey.html", key=key)
-    else:
+        new_key = Key(name=name, auth_key=apikey, grp_id=groupid)
+        db.session.add(new_key)
+        db.session.commit()
         key = Key.query.all()
         return render_template("addkey.html", key=key)
+    key = Key.query.all()
+    return render_template("addkey.html", key=key)
 
 
-@app.route("/qrcode/<int:id>")
-def getqr(id):
+@app.route("/qrcode/<int:url_id>")
+def getqr(url_id):
     # For bitly api
     #     headers = {
     #         "Authorization": api.Authorization,
@@ -145,37 +139,37 @@ def getqr(id):
     #     api_output = json.loads(format)["description"]
 
     # Generating qr code using pyqrcode module
-    data = Url.query.filter_by(id=id).first()
+    data = Url.query.filter_by(id=url_id).first()
     url = data.short_url
     qr_obj = pyqrcode.create(url)
     # qr_code = qr_obj.png("file.png", scale=10, background="#FFFFFF")
     image_as_str = qr_obj.png_as_base64_str(scale=10)
 
-    image = "data:image/png;base64,{}".format(image_as_str)
+    image = f"data:image/png;base64,{image_as_str}"
     return render_template("qrcode.html", qrcode=image)
 
 
-@app.route("/deleteurl/<int:id>", methods=["POST"])
-def deleteurl(id):
-    data = Url.query.get(id)
+@app.route("/deleteurl/<int:url_id>", methods=["POST"])
+def deleteurl(url_id):
+    data = Url.query.get(url_id)
     db.session.delete(data)
     db.session.commit()
     url = Url.query.all()
     return render_template("database.html", url=url)
 
 
-@app.route("/deletekey/<int:id>", methods=["POST"])
-def deletekey(id):
-    data = Key.query.get(id)
+@app.route("/deletekey/<int:key_id>", methods=["POST"])
+def deletekey(key_id):
+    data = Key.query.get(key_id)
     db.session.delete(data)
     db.session.commit()
     key = Key.query.all()
     return render_template("addkey.html", key=key)
 
 
-@app.route("/copytoclipboard/<int:id>")
-def copytoclipboard(id):
-    data = Url.query.filter_by(id=id).first()
+@app.route("/copytoclipboard/<int:url_id>")
+def copytoclipboard(url_id):
+    data = Url.query.filter_by(id=url_id).first()
     url = data.short_url
     return render_template("copy.html", bitly_url=url)
 
@@ -189,8 +183,7 @@ def search_database():
 
     if len(match) == 0:
         return render_template("error.html", message="No match found!")
-    else:
-        return render_template("database.html", url=match)
+    return render_template("database.html", url=match)
 
 
 @app.errorhandler(500)
