@@ -1,3 +1,4 @@
+"""Import module"""
 import os
 import json
 import pyqrcode
@@ -14,15 +15,16 @@ from shortner import app
 from shortner.model import Url, Key, db
 
 
-# Ensure database is created
 @app.before_first_request
 def create_tables():
+    """Ensure database is created"""
     db.create_all()
 
 
 # Favicon
 @app.route("/favicon.ico")
 def favicon():
+    """Add favicon"""
     return send_from_directory(
         os.path.join(app.root_path, "static"),
         "favicon.ico",
@@ -30,9 +32,10 @@ def favicon():
     )
 
 
+# response for setting cookie
 @app.route("/")
 def home():
-    # response for setting cookie
+    """Set cookie data and check if api are present or not"""
     response = make_response(render_template("index.html"), 200)
     response.set_cookie("message", "Cookie time", samesite="Lax")
     apikeys = Key.query.all()
@@ -43,12 +46,12 @@ def home():
 
 @app.route("/shortner", methods=["POST", "GET"])
 def shortner():
-    # Show message when no api-key is found.
+    """Fetch short url data from bitly server"""
     if request.method == "POST":
         bitly_key = Key.query.all()
         if len(bitly_key) == 0:
+            # Show message when no api-key is found.
             return render_template("error.html", message="Please add api key.")
-        # else:
         activeid = request.form["currentapikey"]
         bitly_key = Key.query.filter_by(id=activeid).first()
         key = bitly_key.auth_key
@@ -62,16 +65,24 @@ def shortner():
         # response returns a object after request. To get relevant data you need to
         # access the property you're after, e.g. r.status_code, r.text, etc.
         # response has type dictionary
-        response = requests.post(
-            "https://api-ssl.bitly.com/v4/shorten",
-            headers=headers,
-            # Conversion from python to json
-            data=json.dumps(raw_data),
-        )
-        data = response.json()
+        try:
+            response = requests.post(
+                "https://api-ssl.bitly.com/v4/shorten",
+                # Conversion from python to json
+                data=json.dumps(raw_data),
+                headers=headers,
+                # If request doesn't complete in 5sec an error will be raised
+                timeout=5,
+            )
+        except requests.exceptions.ReadTimeout:
+            return render_template(
+                "error.html",
+                message="""Request can't be processed. Please check your internet connection.""",
+            )
         # Check server response code
         if response.status_code == 200:
             # Conversion from python dictionary to json
+            data = response.json()
             data_format = json.dumps(data, indent=2)
             short_link = json.loads(data_format)["link"]
         else:
@@ -82,8 +93,8 @@ def shortner():
             if Url.query.filter_by(actual_url=url).first():
                 return render_template("duplicate.html", duplicate=url)
             # Add url to database
-            p = Url(actual_url=url, short_url=short_link)
-            db.session.add(p)
+            database_entry = Url(actual_url=url, short_url=short_link)
+            db.session.add(database_entry)
             db.session.commit()
         return render_template("slink.html", link=short_link)
     return render_template(
@@ -93,6 +104,7 @@ def shortner():
 
 @app.route("/database")
 def database():
+    """Display database contents"""
     # Another way to do this
 
     # conn = sqlite3.connect("your database")
@@ -109,6 +121,7 @@ def database():
 
 @app.route("/addkey", methods=["POST", "GET"])
 def addkey():
+    """Allow users to add keys via post request"""
     if request.method == "POST":
         name = request.form["name"]
         apikey = request.form["apikey"]
@@ -126,6 +139,7 @@ def addkey():
 
 @app.route("/qrcode/<int:url_id>")
 def getqr(url_id):
+    """Display qr for bitly url"""
     # For bitly api
     #     headers = {
     #         "Authorization": api.Authorization,
@@ -151,6 +165,7 @@ def getqr(url_id):
 
 @app.route("/deleteurl/<int:url_id>", methods=["POST"])
 def deleteurl(url_id):
+    """Allow users to delete url from database"""
     data = Url.query.get(url_id)
     db.session.delete(data)
     db.session.commit()
@@ -160,6 +175,7 @@ def deleteurl(url_id):
 
 @app.route("/deletekey/<int:key_id>", methods=["POST"])
 def deletekey(key_id):
+    """Allow users to delete api key from database"""
     data = Key.query.get(key_id)
     db.session.delete(data)
     db.session.commit()
@@ -169,6 +185,7 @@ def deletekey(key_id):
 
 @app.route("/copytoclipboard/<int:url_id>")
 def copytoclipboard(url_id):
+    """Allow users to copy short url from database"""
     data = Url.query.filter_by(id=url_id).first()
     url = data.short_url
     return render_template("copy.html", bitly_url=url)
@@ -176,6 +193,7 @@ def copytoclipboard(url_id):
 
 @app.route("/query", methods=["POST"])
 def search_database():
+    """Search for a url in database"""
     search_query = request.form["query"]
     match = Url.query.filter(
         Url.actual_url.contains(search_query)
@@ -187,6 +205,7 @@ def search_database():
 
 
 @app.errorhandler(500)
-def basic_error(e):
-    error_msg = e
-    return render_template("error.html", message=error_msg)
+def basic_error(error_msg):
+    """Generic error handler"""
+    error = error_msg
+    return render_template("error.html", message=error)
