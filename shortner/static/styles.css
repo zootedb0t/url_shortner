@@ -15,8 +15,6 @@ h1 {
   /* Remove gap between header and top*/
   margin-top: 0;
   background-color: #04aa6d;
-  box-shadow: 0 9px #999;
-  border-radius: 0px 0px 15px 15px;
 }
 
 table,
@@ -158,4 +156,10 @@ footer {
   background-color: #D4F1F4;
   padding: 5px;
   font-size: 24px;
+}
+
+#error {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
 }
