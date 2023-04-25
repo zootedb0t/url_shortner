@@ -39,7 +39,7 @@ def home():
     response = make_response(render_template("index.html"), 200)
     response.set_cookie("message", "Cookie time", samesite="Lax")
     apikeys = Key.query.all()
-    if len(apikeys) == 0:
+    if not apikeys:
         return render_template("index.html", apikeys="")
     return render_template("index.html", apikeys=apikeys)
 
@@ -49,7 +49,7 @@ def shortner():
     """Fetch short url data from bitly server"""
     if request.method == "POST":
         bitly_key = Key.query.all()
-        if len(bitly_key) == 0:
+        if not bitly_key:
             # Show message when no api-key is found.
             return render_template("error.html", message="Please add api key.")
         activeid = request.form["currentapikey"]
@@ -114,7 +114,7 @@ def database():
 
     # A better way
     url = Url.query.all()  # url is list
-    if len(url) == 0:
+    if not url:
         return render_template("error.html", message="Database is empty. Add some url.")
     return render_template("database.html", url=url)
 
@@ -199,7 +199,7 @@ def search_database():
         Url.actual_url.contains(search_query)
     ).all()  # This returns a list
 
-    if len(match) == 0:
+    if not match:
         return render_template("error.html", message="No match found!")
     return render_template("database.html", url=match)
 
