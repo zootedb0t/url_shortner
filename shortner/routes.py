@@ -209,3 +209,9 @@ def basic_error(error_msg):
     """Generic error handler"""
     error = error_msg
     return render_template("error.html", message=error)
+
+@app.errorhandler(404)
+def not_found(error_msg):
+    """Not found error handler"""
+    error = error_msg
+    return render_template("error.html", message=error)
