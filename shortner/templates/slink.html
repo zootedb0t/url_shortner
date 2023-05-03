@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Bitly Link{% endblock %}
 {% block content %}
-<div id="url">
-  <p>{{ link }}</p>
-</div>
-  <button onclick="urlCopy('#url')">Copy url</button>
-  <button><a href="/" type="button">Goto Home</a></button>
+    <div id="url">
+        <p>{{ link }}</p>
+    </div>
+    <button onclick="urlCopy('#url')">Copy url</button>
+    <button>
+        <a href="/" type="button">Goto Home</a>
+    </button>
 {% endblock %}

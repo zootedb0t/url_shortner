@@ -1,42 +1,36 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block title %}URL Database{% endblock %}
 {% block content %}
-<table align="center" id="data_tbl">
-  <div style="margin: 10px" ;>
-    <form action="{{ url_for('search_database')}}" method="post">
-      <input type="text" name="query" placeholder="Search" />
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-  <thead>
-    <th>Actual URL</th>
-    <th>Short URL</th>
-    <th>Actions</th>
-  </thead>
-  {% for data in url %}
-  <tbody>
-    <td>{{ data.actual_url }}</td>
-    <td>{{ data.short_url }}</td>
-    <td>
-      <form
-        method="post"
-        action="{{url_for('deleteurl', url_id=data.id )}}"
-        style="display: inline"
-      >
-        <button type="submit">Delete</button>
-      </form>
-      <button type="submit">
-        <a href="{{url_for('getqr', url_id=data.id )}}" type="button"
-          >Get QR Code</a
-        >
-      </button>
-      <button type="submit">
-        <a href="{{url_for('copytoclipboard', url_id=data.id)}}" type="button"
-          >Copy to clipboard</a
-        >
-      </button>
-    </td>
-  </tbody>
-  {% endfor %}
-</table>
+    <table align="center" id="data_tbl">
+        <div style="margin: 10px" ;>
+            <form action="{{ url_for('search_database') }}" method="post">
+                <input type="text" name="query" placeholder="Search" />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <thead>
+            <th>Actual URL</th>
+            <th>Short URL</th>
+            <th>Actions</th>
+        </thead>
+        {% for data in url %}
+            <tbody>
+                <td>{{ data.actual_url }}</td>
+                <td>{{ data.short_url }}</td>
+                <td>
+                    <form method="post"
+                          action="{{ url_for('deleteurl', url_id=data.id ) }}"
+                          style="display: inline">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <button type="submit">
+                        <a href="{{ url_for('getqr', url_id=data.id ) }}" type="button">Get QR Code</a>
+                    </button>
+                    <button type="submit">
+                        <a href="{{ url_for('copytoclipboard', url_id=data.id) }}" type="button">Copy to clipboard</a>
+                    </button>
+                </td>
+            </tbody>
+        {% endfor %}
+    </table>
 {% endblock %}

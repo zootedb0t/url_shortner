@@ -1,20 +1,19 @@
 {% extends "base.html" %}
-{% block title %}Your BItly URL{% endblock title %}
-
+{% block title %}
+    Your BItly URL
+{% endblock title %}
 {% block content %}
-<p>
-  <a href="/database"
-    ><button class="database">
-      <img
-        src="/static/images/data_icon.svg"
-        alt="database-icon"
-        height="18"
-        width="18"
-      />
-      Check URL Database
-    </button></a
-  >
-</p>
-<p id="bitly">{{bitly_url}}</p>
-<button onclick="urlCopy('#bitly')">Copy url</button>
+    <p>
+        <a href="/database">
+            <button class="database">
+                <img src="/static/images/data_icon.svg"
+                     alt="database-icon"
+                     height="18"
+                     width="18" />
+                Check URL Database
+            </button>
+        </a>
+    </p>
+    <p id="bitly">{{ bitly_url }}</p>
+    <button onclick="urlCopy('#bitly')">Copy url</button>
 {% endblock %}
