@@ -19,14 +19,44 @@ h1 {
 
 /* index.html styles */
 .main-button {
-  padding: 20px;
-  border-style: solid;
+  table-layout: fixed;
+}
+
+.database {
+  padding: 15px;
+  margin: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  table-layout: fixed;
+  /* width: 80%; */
+  outline: none;
+  background-color: #04aa6d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+@media only screen and (max-device-width: 450px) {
+  .database {
+    padding: 15px;
+    margin: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    table-layout: fixed;
+    width: 80%;
+    outline: none;
+    background-color: #04aa6d;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
 }
 
 .form-button {
-
   padding: 20px;
-  border-style: solid;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 table,
@@ -38,18 +68,6 @@ td {
 table,
 a {
   color: black;
-}
-
-.database {
-  padding: 15px 25px;
-  margin: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  outline: none;
-  background-color: #04aa6d;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
 }
 
 .database:hover {

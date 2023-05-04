@@ -30,7 +30,7 @@ git clone https://github.com/zootedb0t/url_shortner && cd url_shortner`
 ```
 - Create a python virtual environment:
 ``` 
-python -m venv venv`
+python -m venv venv
 ```
 - Activate virtual environment:
 ```

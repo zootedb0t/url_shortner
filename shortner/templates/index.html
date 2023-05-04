@@ -2,34 +2,36 @@
 {% block title %}Welcome To URL-Shortner{% endblock %}
 {% block content %}
     <div class="main-button">
-        <a href="/database">
-            <button class="database">
+        <button class="database">
+            <a href="/database">
                 <img src="/static/images/data_icon.svg"
                      alt="database-icon"
                      height="18"
                      width="18" />
                 URL Database
-            </button>
-        </a>
-        <a href="/addkey">
-            <button class="database">
+            </a>
+        </button>
+        <button class="database">
+            <a href="/addkey">
                 <img src="/static/images/key_icon.svg"
                      alt="key_icon"
                      height="22"
                      width="22" />
                 API Keys
-            </button>
-        </a>
+            </a>
+        </button>
     </div>
     <div class="form-button">
         <form action="{{ url_for('shortner') }}" method="post">
-            <label for="apikey">Select a key:</label>
-            <select name="currentapikey">
-                {% for key in apikeys %}
-                    <option value={{ key.id }}>{{ key.name }}
-                    </option>
-                {% endfor %}
-            </select>
+            {% if apikeys %}
+                <label for="apikey">Select a key:</label>
+                <select name="currentapikey">
+                    {% for key in apikeys %}
+                        <option value={{ key.id }}>{{ key.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            {% endif %}
             <input type="url" name="data" placeholder="Enter URL" required />
             <button>
                 <img src="/static/images/send_icon.svg" alt="send" height="15" width="15" />
