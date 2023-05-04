@@ -17,6 +17,18 @@ h1 {
   background-color: #04aa6d;
 }
 
+/* index.html styles */
+.main-button {
+  padding: 20px;
+  border-style: solid;
+}
+
+.form-button {
+
+  padding: 20px;
+  border-style: solid;
+}
+
 table,
 th,
 td {
@@ -152,8 +164,8 @@ footer {
   border: none;
 }
 
-#url p{
-  background-color: #D4F1F4;
+#url p {
+  background-color: #d4f1f4;
   padding: 5px;
   font-size: 24px;
 }

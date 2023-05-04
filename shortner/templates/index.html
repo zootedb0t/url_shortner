@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Welcome To URL-Shortner{% endblock %}
 {% block content %}
-    <p>
+    <div class="main-button">
         <a href="/database">
             <button class="database">
                 <img src="/static/images/data_icon.svg"
@@ -20,19 +20,21 @@
                 API Keys
             </button>
         </a>
-    </p>
-    <form action="{{ url_for('shortner') }}" method="post">
-        <label for="apikey">Select a key:</label>
-        <select name="currentapikey">
-            {% for key in apikeys %}
-                <option value={{ key.id }}>{{ key.name }}
-                </option>
-            {% endfor %}
-        </select>
-        <input type="url" name="data" placeholder="Enter URL" required />
-        <button>
-            <img src="/static/images/send_icon.svg" alt="send" height="15" width="15" />
-            Submit URL
-        </button>
-    </form>
+    </div>
+    <div class="form-button">
+        <form action="{{ url_for('shortner') }}" method="post">
+            <label for="apikey">Select a key:</label>
+            <select name="currentapikey">
+                {% for key in apikeys %}
+                    <option value={{ key.id }}>{{ key.name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="url" name="data" placeholder="Enter URL" required />
+            <button>
+                <img src="/static/images/send_icon.svg" alt="send" height="15" width="15" />
+                Submit URL
+            </button>
+        </form>
+    </div>
 {% endblock %}
