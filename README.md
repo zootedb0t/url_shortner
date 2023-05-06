@@ -26,7 +26,7 @@ For more [info](https://dev.bitly.com/api-reference/#getGroups)
 ## Running App Locally
 - Clone the repo:
 ``` 
-git clone https://github.com/zootedb0t/url_shortner && cd url_shortner`
+git clone https://github.com/zootedb0t/url_shortner && cd url_shortner
 ```
 - Create a python virtual environment:
 ``` 

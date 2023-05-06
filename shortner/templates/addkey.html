@@ -8,28 +8,30 @@
         <input type="text" name="groupid" placeholder="Enter Group Id" required />
         <button type="submit">Submit Credentials</button>
     </form>
-    <div id="keylist">
-        <table>
-            <thead>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Api Key</th>
-                <th>Group ID</th>
-                <th>Action</th>
-            </thead>
-            {% for data in key %}
-                <tbody>
-                    <td>{{ data.id }}</td>
-                    <td>{{ data.name }}</td>
-                    <td>{{ data.auth_key }}</td>
-                    <td>{{ data.grp_id }}</td>
-                    <td>
-                        <form method="post" action="{{ url_for('deletekey', key_id=data.id) }}">
-                            <button type="submit">Delete Key</button>
-                        </form>
-                    </td>
-                </tbody>
-            {% endfor %}
-        </table>
-    </div>
+    {% if key %}
+        <div id="keylist">
+            <table>
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Api Key</th>
+                    <th>Group ID</th>
+                    <th>Action</th>
+                </thead>
+                {% for data in key %}
+                    <tbody>
+                        <td>{{ data.id }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.auth_key }}</td>
+                        <td>{{ data.grp_id }}</td>
+                        <td>
+                            <form method="post" action="{{ url_for('deletekey', key_id=data.id) }}">
+                                <button type="submit">Delete Key</button>
+                            </form>
+                        </td>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
 {% endblock %}
