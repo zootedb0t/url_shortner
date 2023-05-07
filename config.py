@@ -18,12 +18,25 @@ class Config:
     # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
-    COMPRESSOR_DEBUG = True
+
+    def __repr__(self):
+        return f"Flask Env: {self.FLASK_ENV}, Flask App: {self.FLASK_APP}, \
+            Static Folder: {self.STATIC_FOLDER}, Static Folder: {self.STATIC_FOLDER}"
+
+    def __str__(self):
+        return f"Flask Env: {self.FLASK_ENV}, Flask App: {self.FLASK_APP}, \
+            Static Folder: {self.STATIC_FOLDER}, Static Folder: {self.STATIC_FOLDER}"
+
 
 class DbConfig:
 
     """Configration for database"""
+
     SQLALCHEMY_DATABASE_URI = "sqlite:///url.db"
-    SQLALCHEMY_BINDS = {
-    "key": "sqlite:///key.db"
-    }
+    SQLALCHEMY_BINDS = {"key": "sqlite:///key.db"}
+
+    def __repr__(self):
+        return f"URL Database: {self.SQLALCHEMY_DATABASE_URI} Key Database: {self.SQLALCHEMY_BINDS}"
+
+    def __str__(self):
+        return f"URL Database: {self.SQLALCHEMY_DATABASE_URI} Key Database: {self.SQLALCHEMY_BINDS}"

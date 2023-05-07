@@ -1,6 +1,7 @@
 """Import db object"""
 from flask_sqlalchemy import SQLAlchemy
 from shortner import app
+
 db = SQLAlchemy(app)
 
 
