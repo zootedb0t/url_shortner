@@ -1,5 +1,7 @@
 """Import db object"""
-from shortner import db
+from flask_sqlalchemy import SQLAlchemy
+from shortner import app
+db = SQLAlchemy(app)
 
 
 class Url(db.Model):
