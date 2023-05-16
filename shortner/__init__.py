@@ -17,6 +17,8 @@ def init_app():
     db.init_app(app)
 
     with app.app_context():
+        # pylint: disable=unused-import
+        # pylint: disable=import-outside-toplevel
         from . import routes
         db.create_all()
 

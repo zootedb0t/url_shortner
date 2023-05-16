@@ -2,19 +2,19 @@
 import os
 import json
 import pyqrcode
+import requests
 from flask import (
     render_template,
     request,
     make_response,
     send_from_directory,
+    # Import app
+    current_app as app,
 )
-import requests
 
-# Import app
-from flask import current_app as app
 
 # Database related stuff
-from shortner.model import Url, Key, db
+from .model import Url, Key, db
 
 
 # Favicon
