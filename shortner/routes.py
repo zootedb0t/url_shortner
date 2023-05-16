@@ -9,16 +9,12 @@ from flask import (
     send_from_directory,
 )
 import requests
-from shortner import app
+
+# Import app
+from flask import current_app as app
 
 # Database related stuff
 from shortner.model import Url, Key, db
-
-
-@app.before_first_request
-def create_tables():
-    """Ensure database is created"""
-    db.create_all()
 
 
 # Favicon

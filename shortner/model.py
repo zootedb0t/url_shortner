@@ -1,8 +1,5 @@
 """Import db object"""
-from flask_sqlalchemy import SQLAlchemy
-from shortner import app
-
-db = SQLAlchemy(app)
+from . import db
 
 
 class Url(db.Model):
@@ -24,7 +21,7 @@ class Url(db.Model):
 
 
 class Key(db.Model):
-    """API Key"""
+    """API Key Database"""
 
     __bind_key__ = "key"
     id = db.Column(db.Integer, primary_key=True)
