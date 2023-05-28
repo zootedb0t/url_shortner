@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 a {
@@ -12,6 +11,7 @@ a {
 h1 {
   font-size: 36px;
   padding: 15px;
+  text-align: center;
   /* Remove gap between header and top*/
   margin-top: 0;
   background-color: #04aa6d;
@@ -19,7 +19,7 @@ h1 {
 
 /* index.html styles */
 .main-button {
-  table-layout: fixed;
+  text-align: center;
 }
 
 .database {
@@ -33,6 +33,49 @@ h1 {
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
+}
+
+.database:hover {
+  background-color: #3e8e41;
+}
+
+/* Style the form - display items horizontally */
+.form-button {
+  display: flex;
+  margin: auto;
+}
+
+/* Add some margins for each label */
+.form-button label {
+  margin: 5px;
+  flex: 5%;
+}
+
+.form-button select {
+  margin: 5px;
+  padding: 5px;
+}
+
+/* Style the input fields */
+.form-button input {
+  margin: 5px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  flex: 85%;
+}
+
+/* Style the submit button */
+.form-button button {
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  flex: 10%;
+  margin: 5px;
+}
+
+.form-button button:hover {
+  background-color: royalblue;
+  border-radius: 5px;
 }
 
 @media only screen and (max-device-width: 450px) {
@@ -51,25 +94,37 @@ h1 {
   }
 }
 
-.form-button {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  margin: 5px;
-}
-
-.form-button select, .form-button input, .form-button button {
-  padding: 6px 10px;
-  border: 2px solid;
-  border-radius: 4px;
-  margin: 2px;
-}
-
-@media (max-width: 600) {
+@media (max-width: 600px) {
   .form-button {
+    display: flex;
+    margin: 5px;
+    flex: 100%;
     flex-direction: column;
-    justify-content: center;
+  }
+}
+
+/* API Key form */
+.api-form {
+  text-align: center;
+  display: block;
+}
+
+.api-form input,
+.api-form button {
+  font-size: 16px;
+  border: 1px solid;
+}
+
+@media (max-width: 700px) {
+  .api-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .api-form input,
+  .api-form button {
+    margin: 5px;
+    border: 1px solid;
+    font-size: 16px;
   }
 }
 
@@ -83,18 +138,9 @@ a {
   color: black;
 }
 
-.database:hover {
-  background-color: #3e8e41;
-}
-
-.database:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
 /* Footer */
 footer {
+  text-align: center;
   display: inline-block;
   position: fixed;
   bottom: 0;
@@ -103,6 +149,68 @@ footer {
   background-color: #03b982;
 }
 
+.info {
+  padding: 5px;
+  font-size: 26px;
+}
+
+#duplicate {
+  font-size: 28px;
+  color: red;
+}
+
+/* database.html */
+.search-url {
+  text-align: center;
+  margin: 10px;
+}
+
+.search-url input,
+.api-form button {
+  margin: 5px;
+  font-size: 16px;
+}
+
+#data_tbl {
+  width: 100%;
+}
+
+/* API Key table */
+#keylist {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#keylist th {
+  border: none;
+}
+
+/*slink.html css*/
+#url p {
+  background-color: #d4f1f4;
+  padding: 5px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#url button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+
+/*error.html*/
+#error_msg {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: red;
+}
+
+/*Animaion*/
 @keyframes animateHeart {
   0% {
     transform: scale(0.8);
@@ -157,52 +265,4 @@ footer {
 
 #git-animation {
   animation: tilt-shaking 0.5s infinite;
-}
-
-.info {
-  padding: 5px;
-  font-size: 26px;
-}
-
-#duplicate {
-  font-size: 28px;
-  color: red;
-}
-
-#error_msg {
-  font-size: 28px;
-  background-color: red;
-}
-
-#data_tbl {
-  width: 75%;
-  /* color: black; */
-}
-
-#keylist {
-  padding: 20px;
-  display: block;
-  margin: auto;
-}
-
-#keylist table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-}
-
-#keylist th {
-  border: none;
-}
-
-#url p {
-  background-color: #d4f1f4;
-  padding: 5px;
-  font-size: 24px;
-}
-
-#error {
-  font-size: 24px;
-  font-weight: bold;
-  color: red;
 }

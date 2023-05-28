@@ -21,8 +21,7 @@
             </button>
         </a>
     </div>
-    <div class="form-button">
-        <form action="{{ url_for("shortner") }}" method="post">
+        <form action="{{ url_for("shortner") }}" method="post" class="form-button">
             {% if apikeys %}
                 <label for="apikey">Select a key:</label>
                 <select name="currentapikey">
@@ -38,5 +37,4 @@
                 Submit URL
             </button>
         </form>
-    </div>
 {% endblock %}

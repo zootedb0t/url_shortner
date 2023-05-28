@@ -2,7 +2,7 @@
 {% block title %}Add Api Keys{% endblock %}
 }
 {% block content %}
-    <form action="{{ url_for('addkey') }}" method="post">
+    <form action="{{ url_for("addkey") }}" method="post" class="api-form">
         <input type="text" name="name" placeholder="Give a name" required />
         <input type="text" name="apikey" placeholder="Enter Api Key" required />
         <input type="text" name="groupid" placeholder="Enter Group Id" required />
@@ -13,6 +13,7 @@
             <table>
                 <thead>
                     <th>Name</th>
+
                     <th>Api Key</th>
                     <th>Group ID</th>
                     <th>Action</th>

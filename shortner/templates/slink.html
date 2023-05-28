@@ -3,9 +3,9 @@
 {% block content %}
     <div id="url">
         <p>{{ link }}</p>
+        <button onclick="urlCopy('#url')">Copy url</button>
+        <button>
+            <a href="/" type="button">Goto Home</a>
+        </button>
     </div>
-    <button onclick="urlCopy('#url')">Copy url</button>
-    <button>
-        <a href="/" type="button">Goto Home</a>
-    </button>
 {% endblock %}
