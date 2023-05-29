@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block title %}URL QR Code{% endblock %}
 {% block content %}
-    <p>
-        <img src="{{ qrcode }}" alt="URL QR-Code" id="embedImage" />
-    </p>
-    <a href="{{ url_for('database') }}">
-        <button type="submit">Go Back</button>
-    </a>
-    <button id="saveImg" onclick="saveQrCode()">Download QR code</button>
+    <div id="qr-code">
+        <p>
+            <img src="{{ qrcode }}" alt="URL QR-Code" id="embedImage" />
+        </p>
+        <a href="{{ url_for("database") }}">
+            <button type="submit">Go Back</button>
+        </a>
+        <button id="saveImg" onclick="saveQrCode()">Download QR code</button>
+    </div>
 {% endblock %}

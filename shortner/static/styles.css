@@ -103,31 +103,6 @@ h1 {
   }
 }
 
-/* API Key form */
-.api-form {
-  text-align: center;
-  display: block;
-}
-
-.api-form input,
-.api-form button {
-  font-size: 16px;
-  border: 1px solid;
-}
-
-@media (max-width: 700px) {
-  .api-form {
-    display: flex;
-    flex-direction: column;
-  }
-  .api-form input,
-  .api-form button {
-    margin: 5px;
-    border: 1px solid;
-    font-size: 16px;
-  }
-}
-
 table,
 td {
   border: 1px solid black;
@@ -175,17 +150,44 @@ footer {
   width: 100%;
 }
 
-/* API Key table */
-#keylist {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
+#Key_tbl {
+  width: 100%;
+}
+
+/* API Key form */
+.api-form {
   text-align: center;
 }
 
-#keylist th {
+.api-form input,
+.api-form button {
+  font-size: 16px;
+  border: 1px solid;
+}
+
+@media (max-width: 700px) {
+  .api-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .api-form input,
+  .api-form button {
+    margin: 5px;
+    border: 1px solid;
+    font-size: 16px;
+  }
+}
+
+/* API Key table */
+#key_list {
+  text-align: center;
+  width: 100%;
+}
+
+#key_list th {
   border: none;
 }
+
 
 /*slink.html css*/
 #url p {
@@ -209,6 +211,16 @@ footer {
   font-weight: bold;
   color: red;
 }
+
+/*QR code*/
+#qr-code {
+  text-align: center;
+}
+
+#copy-url {
+  text-align: center;
+}
+
 
 /*Animaion*/
 @keyframes animateHeart {
