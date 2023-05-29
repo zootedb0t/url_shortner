@@ -18,7 +18,7 @@ platformdirs==3.5.1
 pypng==0.20220715.0
 PyQRCode==1.2.1
 python-dotenv==1.0.0
-requests==2.30.0
+requests==2.31.0
 SQLAlchemy==2.0.15
 tomli==2.0.1
 tomlkit==0.11.8
