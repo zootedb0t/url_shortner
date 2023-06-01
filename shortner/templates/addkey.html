@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Add Api Keys{% endblock %}
 {% block content %}
-    <div class="key-tbl" style="text-align: center; margin: 10px">
+    <div style="text-align: center">
         <form action="{{ url_for("addkey") }}" method="post" class="api-form">
             <input type="text" name="name" placeholder="Give a name" required />
             <input type="text" name="apikey" placeholder="Enter Api Key" required />
             <input type="text" name="groupid" placeholder="Enter Group Id" required />
             <button type="submit">Submit Credentials</button>
         </form>
+    </div>
+    <div id="key-list">
         {% if key %}
-            <table id="key-list">
+            <table>
                 <thead>
                     <th>Name</th>
                     <th>Api Key</th>

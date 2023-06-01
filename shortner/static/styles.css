@@ -152,6 +152,8 @@ footer {
   width: 100%;
 }
 
+/* API Key table */
+
 .api-form input,
 .api-form button {
   font-size: 16px;
@@ -171,14 +173,25 @@ footer {
   }
 }
 
-/* API Key table */
-#key-list {
+#key-form {
   text-align: center;
-  width: 100%;
+  margin: 10px;
+}
+
+#key-list {
+  margin: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #key-list th {
   border: none;
+}
+
+#key-list td {
+  padding: 5px;
 }
 
 /*slink.html css*/
