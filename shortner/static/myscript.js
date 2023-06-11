@@ -6,7 +6,10 @@ function urlCopy(e) {
 }
 
 // Save qr-code
-function saveQrCode() {
+function saveQr() {
+  var link = document.createElement("a");
   const img = document.getElementById("embedImage");
-  window.location.href = img.src.replace("image/png", "image/octet-stream");
+  link.setAttribute("href", img.src);
+  link.setAttribute("download", "qr-code");
+  link.click();
 }
