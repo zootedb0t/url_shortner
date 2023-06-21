@@ -1,4 +1,4 @@
-# URL Shortener App ![Lines of code](https://img.shields.io/tokei/lines/github/zootedb0t/url_shortner?style=flat-square)  [![CodeQL](https://github.com/zootedb0t/url_shortner/actions/workflows/codeql.yml/badge.svg)](https://github.com/zootedb0t/url_shortner/actions/workflows/codeql.yml) [![Pylint](https://github.com/zootedb0t/url_shortner/actions/workflows/pylint.yml/badge.svg)](https://github.com/zootedb0t/url_shortner/actions/workflows/pylint.yml)
+# URL Shortener App ![GitHub](https://img.shields.io/github/license/zootedb0t/url_shortner) [![CodeQL](https://github.com/zootedb0t/url_shortner/actions/workflows/codeql.yml/badge.svg)](https://github.com/zootedb0t/url_shortner/actions/workflows/codeql.yml) [![Pylint](https://github.com/zootedb0t/url_shortner/actions/workflows/pylint.yml/badge.svg)](https://github.com/zootedb0t/url_shortner/actions/workflows/pylint.yml)
 
 A url-shortner built using flask and Bitly api. It has following dependencies:
 
