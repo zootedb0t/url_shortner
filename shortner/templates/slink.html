@@ -2,8 +2,8 @@
 {% block title %}Bitly Link{% endblock %}
 {% block content %}
     <div id="url">
-        <p>{{ link }}</p>
-        <button onclick="urlCopy('#url')">Copy url</button>
+        <p id="s-url">{{ link }}</p>
+        <button onclick="urlCopy('#s-url')">Copy url</button>
         <button>
             <a href="/" type="button">Goto Home</a>
         </button>
