@@ -6,7 +6,7 @@ dill==0.3.7
 Flask==3.0.0
 Flask-HTTPAuth==4.8.0
 Flask-SQLAlchemy==3.1.1
-greenlet==3.0.2
+greenlet==3.0.3
 idna==3.6
 isort==5.13.1
 itsdangerous==2.1.2
