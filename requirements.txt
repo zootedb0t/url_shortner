@@ -20,7 +20,7 @@ PyQRCode==1.2.1
 python-dotenv==1.0.1
 requests==2.32.3
 SQLAlchemy==2.0.36
-tomli==2.0.1
+tomli==2.2.1
 tomlkit==0.13.2
 typing_extensions==4.12.2
 urllib3==2.2.3
